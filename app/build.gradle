@@ -15,6 +15,10 @@ android {
     }
 }
 
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
 // Task to delete the old jar
 task deleteOldJar(type: Delete){
     delete 'release/mlmath.jar'
