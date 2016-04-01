@@ -1,14 +1,18 @@
 package com.wizzer.mle.math;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import android.app.Application;
+import android.test.ApplicationTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-public class MlVector2UnitTest {
-    @Test
+public class ApplicationTest extends ApplicationTestCase<Application> {
+    public ApplicationTest() {
+        super(Application.class);
+    }
+
+    @SmallTest
     public void testConstructors() throws Exception {
         MlVector2 vector = new MlVector2();
         vector.m_vector[0] = (float) 1.0;
@@ -36,7 +40,7 @@ public class MlVector2UnitTest {
         assertEquals(3.0, vectorCopy.m_vector[1], 0.0);
     }
 
-    @Test
+    @SmallTest
     public void testIsZero() throws Exception {
         MlVector2 vector = new MlVector2();
 
@@ -47,7 +51,7 @@ public class MlVector2UnitTest {
         assertFalse(vector.isZero());
     }
 
-    @Test
+    @SmallTest
     public void testDotProduct() throws Exception {
         MlVector2 vector1 = new MlVector2();
         MlVector2 vector2 = new MlVector2((float)1.0, (float)1.0);
