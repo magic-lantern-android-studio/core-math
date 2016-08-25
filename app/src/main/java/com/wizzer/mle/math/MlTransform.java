@@ -1013,6 +1013,62 @@ public class MlTransform
                 r[i] += 360;
 	}
 
+    /**
+     * Set the rotation component of the transform.
+     *
+     * Sets matrix to the rotation matrix given by the new rotation.
+     *
+     * @param newRotation The rotation to set.
+     */
+    public void setRotation(MlRotation newRotation)
+    {
+        if (newRotation != null) {
+            newRotation.getValue(this);
+        }
+    }
+
+    /**
+     * Set the rotation component of the transform.
+     *
+     * Sets only the rotation matrix of the transform to the rotation specified
+     * by the given rotation quaternion, without otherwise disturbing the rest
+     * of the transformation matrix.
+     *
+     * @param rotation The rotation matrix to set.
+     */
+    public void setRotationOnly(MlRotation rotation)
+    {
+        if (rotation != null) {
+            MlVector3 translation = new MlVector3();
+            MlVector3 scale = new MlVector3();
+            getTranslation(translation);
+            getScale(scale);
+
+            setTransform(translation, rotation, scale);
+        }
+    }
+
+    /**
+     * Set the rotation component of the transform.
+     *
+     * Sets only the rotation matrix of the transform to the X,Y,Z fixed angle
+     * rotations specified by the given rotation vector, without otherwise
+     * disturbing the rest of the transformation matrix.
+     *
+     * @param rotation The rotation vector to set.
+     */
+    void setRotationOnly(MlVector3 rotation)
+    {
+        if (rotation != null) {
+            MlVector3 translation = new MlVector3();
+            MlVector3 scale = new MlVector3();
+            getTranslation(translation);
+            getScale(scale);
+
+            setTransform(translation, rotation, scale);
+        }
+    }
+
     // Applies the fixed angle rotation to the matrix
     public final void applyRotation(MlVector3 rotation)
     {
