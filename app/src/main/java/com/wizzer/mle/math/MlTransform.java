@@ -867,12 +867,18 @@ public class MlTransform
     {
 	    setTransform(t, r, s, so, new MlVector3(MlScalar.ML_SCALAR_ZERO,MlScalar.ML_SCALAR_ZERO,MlScalar.ML_SCALAR_ZERO));
 	}
-    
-    // Gets the X,Y, and Z nonuniform scales of the transformation
+
+    /**
+     * Get the nonuniform scales (x, y, z) of the transformation
+     * as a vector of 3 components.
+     *
+     * @param scale The result is returned in this Vector.
+     */
     public final void getScale(MlVector3 scale)
     {
         float[] s = new float[3];
-        
+
+        /*
         for (int i = 0; i < 3; i++)
         {
             s[i] = (m_matrix[i][0] * m_matrix[i][0]) +
@@ -880,8 +886,28 @@ public class MlTransform
                    (m_matrix[i][2] * m_matrix[i][2]);
             s[i] = (float)Math.sqrt(s[i]);
         }
+        */
+        this.getScale(s);
             
         scale.setValue(s);
+    }
+
+    // Gets the X, Y, and Z nonuniform scales of the transformation
+    /**
+     * Get the nonuniform scales (x, y, z) of the transformation
+     * as a array of 3 components.
+     *
+     * @param scale The result is returned in this array.
+     */
+    public final void getScale(float[] scale)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            scale[i] = (m_matrix[i][0] * m_matrix[i][0]) +
+                       (m_matrix[i][1] * m_matrix[i][1]) +
+                       (m_matrix[i][2] * m_matrix[i][2]);
+            scale[i] = (float)Math.sqrt(scale[i]);
+        }
     }
 
     // Sets matrix to scale by given uniform factor
@@ -940,7 +966,7 @@ public class MlTransform
 	/**
 	 * Get the rotation as an array of 4 components.
 	 * 
-	 * @param r The result is returne in this array.
+	 * @param r The result is returned in this array.
 	 */
 	public final void getRotation(float r[])
 	{
