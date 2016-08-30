@@ -85,6 +85,18 @@ public class MlRotation
     }
 
     /**
+     * A constructor given 3D rotation axis vector and angle in radians.
+     *
+     * @param axis A reference to the 3D rotation axis.
+     * @param radians The angle in radians.
+     */
+    public MlRotation(MlVector3 axis, float radians)
+    {
+        super();
+        setValue(axis, radians);
+    }
+
+    /**
      * Create a null rotation.
      * 
      * @return An identity quaternion is returned.
