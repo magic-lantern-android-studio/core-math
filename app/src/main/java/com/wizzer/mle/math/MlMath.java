@@ -147,4 +147,31 @@ public class MlMath
         v[3][2] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN);
         transform.setValue(v);
     }
+
+    static public void convertRotationToByteArray(int offset, byte[] data, MlRotation rotation)
+            throws IOException
+    {
+        if ((data.length - offset) < 16)
+            throw new IOException("Invalid data array length.");
+
+        float v[] = rotation.m_quat;
+        convertFloatToByteArray(v[0], data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        convertFloatToByteArray(v[1], data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        convertFloatToByteArray(v[2], data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        convertFloatToByteArray(v[3], data, offset, ByteOrder.BIG_ENDIAN);
+    }
+
+    static public void convertByteArrayToRotation(int offset, byte[] data, MlRotation rotation)
+            throws IOException
+    {
+        if ((data.length - offset) < 16)
+            throw new IOException("Invalid data array length.");
+
+        float v[] = new float[4];
+        v[0] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        v[1] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        v[2] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
+        v[3] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN);
+        rotation.setValue(v);
+    }
 }
