@@ -36,7 +36,7 @@ package com.wizzer.mle.math;
 public class MlTransform
 {
     // The internal matrix.
-    public float[][] m_matrix = null;
+    public float[][] m_matrix = new float[4][3];
     
     /**
      * The default constructor.
