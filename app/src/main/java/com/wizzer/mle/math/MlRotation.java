@@ -150,7 +150,7 @@ public class MlRotation
         if ((len = q.length()) > 0.00001f)
         {
             axis = q.mul(1 / len);
-            radians[0] = MlAngle.angleToRadians(2 * (float)Math.acos(m_quat[3]));
+            radians[0] = MlAngle.angleToRadians(2 * (float)MlMath.mlAcos(m_quat[3]));
         } else
         {
             axis.setValue(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ONE);
@@ -183,7 +183,10 @@ public class MlRotation
         m.m_matrix[3][1] = MlScalar.ML_SCALAR_ZERO;
         m.m_matrix[3][2] = MlScalar.ML_SCALAR_ZERO;
 
-        matrix = m;
+        //matrix = m;
+        for (int i = 0; i < 4; i ++)
+            for (int j = 0; j < 3; j++)
+                matrix.m_matrix[i][j] = m.m_matrix[i][j];
     }
     
 	/**
@@ -307,13 +310,13 @@ public class MlRotation
         q.setValue(axis);
         q.normalize();
 
-        q.mul((float)Math.sin(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF))));
+        q.mul((float)MlMath.mlSin(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF))));
 
         m_quat[0] = q.m_vector[0];
         m_quat[1] = q.m_vector[1];
         m_quat[2] = q.m_vector[2];
 
-        m_quat[3] = (float)Math.cos(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF)));
+        m_quat[3] = (float)MlMath.mlCos(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF)));
 
         return this;
     }
@@ -573,10 +576,10 @@ public class MlRotation
         if ( (MlScalar.ML_SCALAR_ONE - cosom) > 0.00001f )
         {
             // standard case.
-            omega = (float)Math.acos(cosom);
-            sinom = (float)Math.sin(omega);
-            scalerot0 = (float)(Math.sin(((MlScalar.ML_SCALAR_ONE - t) * omega)) / sinom);
-            scalerot1 = (float)(Math.sin((t * omega)) / sinom);
+            omega = (float)MlMath.mlAcos(cosom);
+            sinom = (float)MlMath.mlSin(omega);
+            scalerot0 = (float)(MlMath.mlSin(((MlScalar.ML_SCALAR_ONE - t) * omega)) / sinom);
+            scalerot1 = (float)(MlMath.mlSin((t * omega)) / sinom);
         } else
         {        
             // rot0 and rot1 very close - just do linear interp.

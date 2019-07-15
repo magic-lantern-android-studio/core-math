@@ -206,4 +206,156 @@ public class MlTransformUnitTest {
         assertEquals(4, result.m_vector[1], 0.000001);
         assertEquals(8, result.m_vector[2], 0.000001);
     }
+
+    @Test
+    public void testSetTranslation() throws Exception {
+        MlTransform t = MlTransform.identity();
+
+        // Set only the translation values, not touching scale and rotation.
+        MlVector3 v = new MlVector3();
+        v.m_vector[0] = -1;   // Translate along x.
+        v.m_vector[1] = -25;  // Translate along y.
+        v.m_vector[2] = 50;   // Translate along z
+        t.setTranslation(v);
+
+        assertEquals(1, t.m_matrix[0][0], 0);
+        assertEquals(0, t.m_matrix[0][1], 0);
+        assertEquals(0, t.m_matrix[0][2], 0);
+        assertEquals(0, t.m_matrix[1][0], 0);
+        assertEquals(1, t.m_matrix[1][1], 0);
+        assertEquals(0, t.m_matrix[1][2], 0);
+        assertEquals(0, t.m_matrix[2][0], 0);
+        assertEquals(0, t.m_matrix[2][1], 0);
+        assertEquals(1, t.m_matrix[2][2], 0);
+        assertEquals(-1, t.m_matrix[3][0], 0);
+        assertEquals(-25, t.m_matrix[3][1], 0);
+        assertEquals(50, t.m_matrix[3][2], 0);
+
+        // Check whether extracted translation values are the same as the one set above.
+        MlVector3 result = new MlVector3();
+        t.getTranslation(result);
+
+        assertEquals(-1, result.m_vector[0], 0);
+        assertEquals(-25, result.m_vector[1], 0);
+        assertEquals(50, result.m_vector[2], 0);
+    }
+
+    @Test
+    public void testSetTranslationOnly() throws Exception {
+        float a[][] = new float[4][3];
+        a[0][0] = 6; a[0][1] = 1; a[0][2] = 1;
+        a[1][0] = 4; a[1][1] = -2; a[1][2] = 5;
+        a[2][0] = 2; a[2][1] = 8; a[2][2] = 7;
+        a[3][0] = 0; a[3][1] = 0; a[3][2] = 0;
+
+        MlTransform t = new MlTransform(a);
+
+        // Set only the translation values, not touching scale and rotation.
+        MlVector3 v = new MlVector3();
+        v.m_vector[0] = -1;   // Translate along x
+        v.m_vector[1] = -25;  // Translate along y
+        v.m_vector[2] = 50;   // Translate along z
+        t.setTranslationOnly(v);
+
+        assertEquals(6, t.m_matrix[0][0], 0);
+        assertEquals(1, t.m_matrix[0][1], 0);
+        assertEquals(1, t.m_matrix[0][2], 0);
+        assertEquals(4, t.m_matrix[1][0], 0);
+        assertEquals(-2, t.m_matrix[1][1], 0);
+        assertEquals(5, t.m_matrix[1][2], 0);
+        assertEquals(2, t.m_matrix[2][0], 0);
+        assertEquals(8, t.m_matrix[2][1], 0);
+        assertEquals(7, t.m_matrix[2][2], 0);
+        assertEquals(-1, t.m_matrix[3][0], 0);
+        assertEquals(-25, t.m_matrix[3][1], 0);
+        assertEquals(50, t.m_matrix[3][2], 0);
+
+        // Check whether extracted translation values are the same as the one set above.
+        MlVector3 result = new MlVector3();
+        t.getTranslation(result);
+
+        assertEquals(-1, result.m_vector[0], 0);
+        assertEquals(-25, result.m_vector[1], 0);
+        assertEquals(50, result.m_vector[2], 0);
+    }
+
+    @Test
+    public void testSetRotationOnly() throws Exception {
+        MlTransform t = MlTransform.identity();
+
+        // Set only the rotation values, not touching scale and translation.
+        MlVector3 v = new MlVector3();
+        v.m_vector[0] = 10;  // Rotate 10 degrees around the x axis.
+        v.m_vector[1] = 10;  // Rotate 10 degrees around the y axis.
+        v.m_vector[2] = 10;  // Rotate 10 degrees around the z axis.
+        t.setRotationOnly(v);
+
+        assertEquals(0.969846248626709, t.m_matrix[0][0], 0);
+        assertEquals(0.2007056623697281, t.m_matrix[0][1], 0);
+        assertEquals(-0.13825835287570953, t.m_matrix[0][2], 0);
+        assertEquals(-0.1710100769996643, t.m_matrix[1][0], 0);
+        assertEquals(0.9646100997924805, t.m_matrix[1][1], 0);
+        assertEquals(0.20070567727088928, t.m_matrix[1][2], 0);
+        assertEquals(0.1736481934785843, t.m_matrix[2][0], 0);
+        assertEquals(-0.1710100769996643, t.m_matrix[2][1], 0);
+        assertEquals(0.969846248626709, t.m_matrix[2][2], 0);
+        assertEquals(0, t.m_matrix[3][0], 0);
+        assertEquals(0, t.m_matrix[3][1], 0);
+        assertEquals(0, t.m_matrix[3][2], 0);
+
+        // Check whether extracted nonuniform scale values are the same as the one set above.
+        MlVector3 result = new MlVector3();
+        t.getScale(result);
+
+        assertEquals(1, result.m_vector[0], 0.000001);
+        assertEquals(1, result.m_vector[1], 0.000001);
+        assertEquals(1, result.m_vector[2], 0.000001);
+
+        // Check whether extracted translation values are the same as the one set above.
+        t.getTranslation(result);
+
+        assertEquals(0, result.m_vector[0], 0.000001);
+        assertEquals(0, result.m_vector[1], 0.000001);
+        assertEquals(0, result.m_vector[2], 0.000001);
+
+        // Check whether extracted translation values are the same as the one set above.
+        t.getRotation(result);
+
+        assertEquals(10, result.m_vector[0], 0.000001);
+        assertEquals(10, result.m_vector[1], 0.000001);
+        assertEquals(10, result.m_vector[2], 0.000001);
+    }
+
+    @Test
+    public void testSetRotation() throws Exception {
+        MlTransform t = new MlTransform(0,0,0,0,0,0,0,0,0,0,0,0);
+
+        MlRotation rot = new MlRotation();
+        MlVector3 axis = new MlVector3(1, 1, 1);
+        float angle = MlAngle.angleToRadians(10);
+        rot.setValue(axis, angle);
+
+        t.setRotation(rot);
+
+        assertEquals(1, t.m_matrix[0][0],0);
+        assertEquals(1.560076611895056E-6, t.m_matrix[0][1],0);
+        assertEquals(-1.560074110784626E-6, t.m_matrix[0][2],0);
+        assertEquals(-1.560074110784626E-6, t.m_matrix[1][0],0);
+        assertEquals(1, t.m_matrix[1][1],0);
+        assertEquals(1.560076611895056E-6, t.m_matrix[1][2],0);
+        assertEquals(1.560076611895056E-6, t.m_matrix[2][0],0);
+        assertEquals(-1.560074110784626E-6, t.m_matrix[2][1],0);
+        assertEquals(1, t.m_matrix[2][2],0);
+        assertEquals(0, t.m_matrix[3][0],0);
+        assertEquals(0, t.m_matrix[3][1],0);
+        assertEquals(0, t.m_matrix[3][2],0);
+
+        // Check whether extracted rotation values are the same as the one set above.
+        MlVector3 rotation = new MlVector3();
+        t.getRotation(rotation);
+
+        assertEquals(8.938566315919161E-5, rotation.m_vector[0], 0);
+        assertEquals(8.938580140238628E-5, rotation.m_vector[1], 0);
+        assertEquals(8.938566315919161E-5, rotation.m_vector[2], 0);
+    }
 }
