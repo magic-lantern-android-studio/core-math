@@ -1,5 +1,45 @@
+/*
+ * MlAngle.java
+ * Created on Dec 1, 2004
+ */
+
+// COPYRIGHT_BEGIN
+//
+// The MIT License (MIT)
+//
+// Copyright (c) 2019 Wizzer Works
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+//  For information concerning this header file, contact Mark S. Millard,
+//  of Wizzer Works at msm@wizzerworks.com.
+//
+//  More information concerning Wizzer Works may be found at
+//
+//      http://www.wizzerworks.com
+//
+// COPYRIGHT_END
+
+// Declare packages.
 package com.wizzer.mle.math;
 
+// Import Java packages.
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -173,5 +213,30 @@ public class MlMath
         v[2] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN); offset += 4;
         v[3] = convertByteArrayToFloat(data, offset, ByteOrder.BIG_ENDIAN);
         rotation.setValue(v);
+    }
+
+    static public float mlSin(float x)
+    {
+        return (float)Math.sin(MlAngle.angleToRadians(x));
+    }
+
+    static public float mlCos(float x)
+    {
+        return (float)Math.cos(MlAngle.angleToRadians(x));
+    }
+
+    static public float mlAsin(float x)
+    {
+        return MlAngle.radiansToAngle((float)Math.asin(x));
+    }
+
+    static public float mlAcos(float x)
+    {
+        return MlAngle.radiansToAngle((float)Math.acos(x));
+    }
+
+    static public float mlAtan2(float x, float y)
+    {
+        return MlAngle.radiansToAngle((float)Math.atan2(x,y));
     }
 }

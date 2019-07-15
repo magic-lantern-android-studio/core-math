@@ -5,25 +5,36 @@
 
 // COPYRIGHT_BEGIN
 //
-//  Copyright (C) 2000-2007  Wizzer Works
 //
-//  Wizzer Works makes available all content in this file ("Content").
-//  Unless otherwise indicated below, the Content is provided to you
-//  under the terms and conditions of the Common Public License Version 1.0
-//  ("CPL"). A copy of the CPL is available at
+// The MIT License (MIT)
 //
-//      http://opensource.org/licenses/cpl1.0.php
+// Copyright (c) 2019 Wizzer Works
 //
-//  For purposes of the CPL, "Program" will mean the Content.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//  For information concerning this Makefile, contact Mark S. Millard,
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+//  For information concerning this header file, contact Mark S. Millard,
 //  of Wizzer Works at msm@wizzerworks.com.
 //
 //  More information concerning Wizzer Works may be found at
 //
 //      http://www.wizzerworks.com
-//
-// COPYRIGHT_END
+//// COPYRIGHT_END
 
 // Declare package.
 package com.wizzer.mle.math;
@@ -996,19 +1007,19 @@ public class MlTransform
         }
         
         // Get Y rotation
-        r[1] = MlAngle.angleToDegrees((float)Math.asin(t[2][0]));
+        r[1] = MlAngle.angleToDegrees(MlMath.mlAsin(t[2][0]));
 
         if (Math.abs(t[2][0] - MlScalar.ML_SCALAR_ONE) > 0.001) 
         {
             // Get X and Z rotations
-            r[0] = MlAngle.angleToDegrees((float)Math.atan2(-t[2][1],t[2][2]));
-            r[2] = MlAngle.angleToDegrees((float)Math.atan2(-t[1][0],t[0][0]));
+            r[0] = MlAngle.angleToDegrees((float)MlMath.mlAtan2(-t[2][1],t[2][2]));
+            r[2] = MlAngle.angleToDegrees((float)MlMath.mlAtan2(-t[1][0],t[0][0]));
         } else
         {
             // Have Gimbal lock -- lost Z degree of freedom, so
             // express rotation as only a X rotation.
             // This can be avoided by moving to quaternion rotations!
-            r[0] = MlAngle.angleToDegrees((float)Math.atan2(t[0][1],t[2][1]));
+            r[0] = MlAngle.angleToDegrees((float)MlMath.mlAtan2(t[0][1],t[2][1]));
             r[2] = MlScalar.ML_SCALAR_ZERO;
         }
 
@@ -1268,8 +1279,8 @@ public class MlTransform
         if (r[2] != MlScalar.ML_SCALAR_ZERO)
         {
             float angle = MlAngle.degreesToAngle(r[2]);
-            float sz = (float)Math.sin(angle);
-            float cz = (float)Math.cos(angle);
+            float sz = MlMath.mlSin(angle);
+            float cz = MlMath.mlCos(angle);
             mat.m_matrix[0][0] = cz;
             mat.m_matrix[0][1] = sz;
             mat.m_matrix[1][0] = -sz;
@@ -1285,8 +1296,8 @@ public class MlTransform
         if (r[1] != MlScalar.ML_SCALAR_ZERO)
         {
             float angle = MlAngle.degreesToAngle(r[1]);
-            float sy = (float)Math.sin(angle);
-            float cy = (float)Math.cos(angle);
+            float sy = MlMath.mlSin(angle);
+            float cy = MlMath.mlCos(angle);
             mat.m_matrix[0][0] = cy;
             mat.m_matrix[0][2] = -sy;
             mat.m_matrix[1][1] = MlScalar.ML_SCALAR_ONE;
@@ -1302,8 +1313,8 @@ public class MlTransform
         if (r[0] != MlScalar.ML_SCALAR_ZERO)
         {
             float angle = MlAngle.degreesToAngle(r[0]);
-            float sx = (float)Math.sin(angle);
-            float cx = (float)Math.cos(angle);
+            float sx = MlMath.mlSin(angle);
+            float cx = (float)MlMath.mlCos(angle);
             mat.m_matrix[0][0]= MlScalar.ML_SCALAR_ONE;
             mat.m_matrix[1][1] = cx;
             mat.m_matrix[1][2] = sx;
