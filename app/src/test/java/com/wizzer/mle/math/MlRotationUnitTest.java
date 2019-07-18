@@ -51,6 +51,46 @@ public class MlRotationUnitTest {
     }
 
     @Test
+    public void testGetValue() throws Exception {
+        // Test default constructor.
+        MlRotation rot = new MlRotation();
+        assertEquals(0.0, rot.m_quat[0], 0.0);
+        assertEquals(0.0, rot.m_quat[1], 0.0);
+        assertEquals(0.0, rot.m_quat[2], 0.0);
+        assertEquals(1.0, rot.m_quat[3], 0.0);
+
+        float v[] = new float[4];
+        rot.getValue(v);
+        assertEquals(0.0, v[0], 0.0);
+        assertEquals(0.0, v[1], 0.0);
+        assertEquals(0.0, v[2], 0.0);
+        assertEquals(1.0, v[3], 0.0);
+
+        MlVector3 axis = new MlVector3();
+        float angle[] = new float[1];
+        rot.getValue(axis, angle);
+        assertEquals(0.0, axis.m_vector[0], 0.0);
+        assertEquals(0.0, axis.m_vector[1], 0.0);
+        assertEquals(1.0, axis.m_vector[2], 0.0);
+        assertEquals(0.0, angle[0], 0.0);
+
+        MlTransform m = new MlTransform();
+        rot.getValue(m);
+        assertEquals(1.0, m.m_matrix[0][0], 0.0);
+        assertEquals(0.0, m.m_matrix[0][1], 0.0);
+        assertEquals(0.0, m.m_matrix[0][2], 0.0);
+        assertEquals(0.0, m.m_matrix[1][0], 0.0);
+        assertEquals(1.0, m.m_matrix[1][1], 0.0);
+        assertEquals(0.0, m.m_matrix[1][2], 0.0);
+        assertEquals(0.0, m.m_matrix[2][0], 0.0);
+        assertEquals(0.0, m.m_matrix[2][1], 0.0);
+        assertEquals(1.0, m.m_matrix[2][2], 0.0);
+        assertEquals(0.0, m.m_matrix[3][0], 0.0);
+        assertEquals(0.0, m.m_matrix[3][1], 0.0);
+        assertEquals(0.0, m.m_matrix[3][2], 0.0);
+    }
+
+    @Test
     public void tesMultiplication() throws Exception {
         // Test default constructor.
         MlRotation rot = new MlRotation();
