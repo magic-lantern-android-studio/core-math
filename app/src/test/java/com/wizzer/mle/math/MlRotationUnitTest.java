@@ -91,7 +91,7 @@ public class MlRotationUnitTest {
     }
 
     @Test
-    public void tesMultiplication() throws Exception {
+    public void tesMultiplication1() throws Exception {
         // Test default constructor.
         MlRotation rot = new MlRotation();
         assertEquals(0.0, rot.m_quat[0], 0.0);
@@ -106,5 +106,23 @@ public class MlRotationUnitTest {
         assertEquals(0.9993880987167358, rot.m_quat[1], 0.0);
         assertEquals(0.0, rot.m_quat[2], 0.0);
         assertEquals(0.034978583455085754, rot.m_quat[3], 0.0);
+    }
+
+    @Test
+    public void tesMultiplication2() throws Exception {
+        // Test default constructor.
+        MlRotation rot = new MlRotation();
+        assertEquals(0.0, rot.m_quat[0], 0.0);
+        assertEquals(0.0, rot.m_quat[1], 0.0);
+        assertEquals(0.0, rot.m_quat[2], 0.0);
+        assertEquals(1.0, rot.m_quat[3], 0.0);
+
+        MlRotation delta = new MlRotation(new MlVector3(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ONE,
+                MlScalar.ML_SCALAR_ZERO), 0.035f);
+        rot.mul(delta);
+        assertEquals(0.0, rot.m_quat[0], 0.0);
+        assertEquals(0.017499107867479324, rot.m_quat[1], 0.0);
+        assertEquals(0.0, rot.m_quat[2], 0.0);
+        assertEquals(0.9998469948768616, rot.m_quat[3], 0.0);
     }
 }
