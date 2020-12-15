@@ -49,11 +49,11 @@ import java.nio.ByteOrder;
  */
 public class MlMath
 {
-    static public void convertFIntegerToByteArray(int i, byte[] b, int offset, ByteOrder type) {
+    static public void convertIntegerToByteArray(int i, byte[] b, int offset, ByteOrder type) {
         ByteBuffer.wrap(b, offset, 4).order(type).putInt(i);
     }
 
-    static public int convertByteArrayToFInteger(byte[] b, int offset, ByteOrder type) {
+    static public int convertByteArrayToInteger(byte[] b, int offset, ByteOrder type) {
         return ByteBuffer.wrap(b, offset, 4).order(type).getInt();
     }
 

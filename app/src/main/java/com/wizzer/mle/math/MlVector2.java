@@ -220,20 +220,7 @@ public class MlVector2
 
         return len;
     }
-    
-	/**
-	 * Returns the real portion of the vector by dividing the first three
-	 * values by the fourth.
-	 * 
-	 * @param v The vector result.
-	 */
-    public final void getReal(MlVector3 v)
-    {
-        v.m_vector[0] = (m_vector[0] / m_vector[3]);
-        v.m_vector[1] = (m_vector[1] / m_vector[3]);
-        v.m_vector[2] = (m_vector[2] / m_vector[3]);
-    }
-    
+
     /**
      * Negates each component of vector in place.
      */ 
