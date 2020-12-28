@@ -7,7 +7,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2015 Wizzer Works
+// Copyright (c) 2015-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -42,13 +42,11 @@ package com.wizzer.mle.math;
 /**
  * 2D vector used to represent points or directions.  Each component of
  * the vector is a single-precision floating-point value.
- * 
- * @author Mark S. Millard
  */
 public class MlVector2
 {
     // The internal vector representation.
-    public float[] m_vector = new float[2];
+    public float[] mVector = new float[2];
     
     /**
      * The default constructor. All elements in the vector are
@@ -57,8 +55,8 @@ public class MlVector2
     public MlVector2()
     {
         super();
-        m_vector[0] = 0;
-        m_vector[1] = 0;
+        mVector[0] = 0;
+        mVector[1] = 0;
     }
     
     /**
@@ -69,8 +67,8 @@ public class MlVector2
      */
     public MlVector2(float[] v)
     {
-        m_vector[0] = v[0];
-        m_vector[1] = v[1];
+        mVector[0] = v[0];
+        mVector[1] = v[1];
     }
     
     /**
@@ -82,8 +80,8 @@ public class MlVector2
      */
     public MlVector2(float x, float y)
     {
-        m_vector[0] = x;
-        m_vector[1] = y;
+        mVector[0] = x;
+        mVector[1] = y;
     }
     
     /**
@@ -94,8 +92,8 @@ public class MlVector2
      */
     public MlVector2(MlVector2 v)
     {
-        m_vector[0] = v.m_vector[0];
-        m_vector[1] = v.m_vector[1];
+        mVector[0] = v.mVector[0];
+        mVector[1] = v.mVector[1];
     }
     
     /**
@@ -106,8 +104,8 @@ public class MlVector2
      */
     public final boolean isZero()
     {
-        return ((m_vector[0] == 0) &&
-                (m_vector[1] == 0));
+        return ((mVector[0] == 0) &&
+                (mVector[1] == 0));
     }
     
     /**
@@ -121,8 +119,8 @@ public class MlVector2
      */
     public final float dot(MlVector2 v)
     {
-        return ((m_vector[0] * v.m_vector[0]) +
-                (m_vector[1] * v.m_vector[1]));
+        return ((mVector[0] * v.mVector[0]) +
+                (mVector[1] * v.mVector[1]));
     }
 
     /**
@@ -132,8 +130,8 @@ public class MlVector2
      */
     public final void getValue(float[] v)
     {
-        v[0] = m_vector[0];
-        v[1] = m_vector[1];
+        v[0] = mVector[0];
+        v[1] = mVector[1];
     }
 
     /**
@@ -145,8 +143,8 @@ public class MlVector2
      */
     public final MlVector2 setValue(float v[])
     {
-        m_vector[0] = v[0];
-        m_vector[1] = v[1];
+        mVector[0] = v[0];
+        mVector[1] = v[1];
         
         return this;
     }
@@ -160,8 +158,8 @@ public class MlVector2
      */
     public final MlVector2 setValue(MlVector2 v)
     {
-        m_vector[0] = v.m_vector[0];
-        m_vector[1] = v.m_vector[1];
+        mVector[0] = v.mVector[0];
+        mVector[1] = v.mVector[1];
         
         return this;
     }
@@ -176,8 +174,8 @@ public class MlVector2
      */
     public final MlVector2 setValue (float x, float y)
     {
-        m_vector[0] = x;
-        m_vector[1] = y;
+        mVector[0] = x;
+        mVector[1] = y;
         
         return this;
     }
@@ -190,8 +188,8 @@ public class MlVector2
     public final float length()
     {
         return (float)Math.sqrt(
-            (m_vector[0] * m_vector[0]) +
-            (m_vector[1] * m_vector[1]));
+            (mVector[0] * mVector[0]) +
+            (mVector[1] * mVector[1]));
     }
         
     /**
@@ -213,8 +211,8 @@ public class MlVector2
 
         if (len != MlScalar.ML_SCALAR_ZERO)
         {
-            m_vector[0] = m_vector[0] * (1/ len);
-            m_vector[1] = m_vector[1] * (1/ len);
+            mVector[0] = mVector[0] * (1/ len);
+            mVector[1] = mVector[1] * (1/ len);
         } else 
             setValue(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO);
 
@@ -226,8 +224,8 @@ public class MlVector2
      */ 
     public final void negate()
     {
-        m_vector[0] = -m_vector[0];
-        m_vector[1] = -m_vector[1];
+        mVector[0] = -mVector[0];
+        mVector[1] = -mVector[1];
     }
     
     /**
@@ -237,7 +235,7 @@ public class MlVector2
      */
     public final MlVector2 unaryNegate()
     {
-        return new MlVector2(-m_vector[0], -m_vector[1]);
+        return new MlVector2(-mVector[0], -mVector[1]);
     }
     
     // Calculate the scale.
@@ -261,7 +259,7 @@ public class MlVector2
      */
     public final void getScale(float[] scale, float[] recipScale)
     {
-        calcScale(m_vector, 2, scale, recipScale);
+        calcScale(mVector, 2, scale, recipScale);
     }
 
     /**
@@ -274,8 +272,8 @@ public class MlVector2
      */
     public final boolean equals(MlVector2 v)
     {
-        return ((m_vector[0] == v.m_vector[0]) &&
-                (m_vector[1] == v.m_vector[1]));
+        return ((mVector[0] == v.mVector[0]) &&
+                (mVector[1] == v.mVector[1]));
     }
     
     /**
@@ -290,8 +288,8 @@ public class MlVector2
      */
     public final boolean equals(MlVector2 v, float tolerance)
     {
-        MlVector2 diff =  new MlVector2(m_vector[0] - v.m_vector[0],
-                m_vector[1] - v.m_vector[1]);
+        MlVector2 diff =  new MlVector2(mVector[0] - v.mVector[0],
+                mVector[1] - v.mVector[1]);
 
         return diff.dot(diff) <= tolerance;
     }
@@ -305,8 +303,8 @@ public class MlVector2
      */
     public final MlVector2 mul(float d)
     {
-        m_vector[0] = m_vector[0] * d;
-        m_vector[1] = m_vector[1] * d;
+        mVector[0] = mVector[0] * d;
+        mVector[1] = mVector[1] * d;
 
         return this;
     }
@@ -321,8 +319,8 @@ public class MlVector2
      */
     public final MlVector2 mul(MlVector2 v, float d)
     {
-        return new MlVector2((v.m_vector[0] * d),
-        	(v.m_vector[1] * d));
+        return new MlVector2((v.mVector[0] * d),
+        	(v.mVector[1] * d));
     }
     
     /**
@@ -348,8 +346,8 @@ public class MlVector2
      */
     public final MlVector2 add(MlVector2 v)
     {
-        m_vector[0] += v.m_vector[0];
-        m_vector[1] += v.m_vector[1];
+        mVector[0] += v.mVector[0];
+        mVector[1] += v.mVector[1];
 
         return this;
     }
@@ -364,8 +362,8 @@ public class MlVector2
      */
     public final MlVector2 add(MlVector2 v1, MlVector2 v2)
     {
-        return new MlVector2(v1.m_vector[0] + v2.m_vector[0],
-        	v1.m_vector[1] + v2.m_vector[1]);
+        return new MlVector2(v1.mVector[0] + v2.mVector[0],
+        	v1.mVector[1] + v2.mVector[1]);
     }
     
     /**
@@ -377,8 +375,8 @@ public class MlVector2
      */
     public final MlVector2 sub(MlVector2 v)
     {
-        m_vector[0] -= v.m_vector[0];
-        m_vector[1] -= v.m_vector[1];
+        mVector[0] -= v.mVector[0];
+        mVector[1] -= v.mVector[1];
 
         return this;
     }
@@ -393,8 +391,8 @@ public class MlVector2
      */
     public final MlVector2 sub(MlVector2 v1, MlVector2 v2)
     {
-        return new MlVector2(v1.m_vector[0] - v2.m_vector[0],
-            v1.m_vector[1] - v2.m_vector[1]);
+        return new MlVector2(v1.mVector[0] - v2.mVector[0],
+            v1.mVector[1] - v2.mVector[1]);
     }
 
 }

@@ -8,7 +8,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 Wizzer Works
+// Copyright (c) 2019-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,20 +34,19 @@
 //  More information concerning Wizzer Works may be found at
 //
 //      http://www.wizzerworks.com
-//// COPYRIGHT_END
+//
+// COPYRIGHT_END
 
 // Declare package.
 package com.wizzer.mle.math;
 
 /**
  * This class implements a 4x3 affine matrix of floating-point elements.
- * 
- * @author Mark S. Millard
  */
 public class MlTransform
 {
     // The internal matrix.
-    public float[][] m_matrix = new float[4][3];
+    public float[][] mMatrix = new float[4][3];
     
     /**
      * The default constructor.
@@ -81,10 +80,10 @@ public class MlTransform
     	float a41, float a42, float a43)
     {
         super();
-        m_matrix[0][0] = a11; m_matrix[0][1] = a12; m_matrix[0][2] = a13;
-        m_matrix[1][0] = a21; m_matrix[1][1] = a22; m_matrix[1][2] = a23;
-        m_matrix[2][0] = a31; m_matrix[2][1] = a32; m_matrix[2][2] = a33;
-        m_matrix[3][0] = a41; m_matrix[3][1] = a42; m_matrix[3][2] = a43;
+        mMatrix[0][0] = a11; mMatrix[0][1] = a12; mMatrix[0][2] = a13;
+        mMatrix[1][0] = a21; mMatrix[1][1] = a22; mMatrix[1][2] = a23;
+        mMatrix[2][0] = a31; mMatrix[2][1] = a32; mMatrix[2][2] = a33;
+        mMatrix[3][0] = a41; mMatrix[3][1] = a42; mMatrix[3][2] = a43;
     }
 
     /**
@@ -107,10 +106,10 @@ public class MlTransform
      */
     public final void setValue(float m[][])
     {
-        m_matrix[0][0] = m[0][0]; m_matrix[0][1] = m[0][1]; m_matrix[0][2] = m[0][2];
-        m_matrix[1][0] = m[1][0]; m_matrix[1][1] = m[1][1]; m_matrix[1][2] = m[1][2];
-        m_matrix[2][0] = m[2][0]; m_matrix[2][1] = m[2][1]; m_matrix[2][2] = m[2][2];
-        m_matrix[3][0] = m[3][0]; m_matrix[3][1] = m[3][1]; m_matrix[3][2] = m[3][2];
+        mMatrix[0][0] = m[0][0]; mMatrix[0][1] = m[0][1]; mMatrix[0][2] = m[0][2];
+        mMatrix[1][0] = m[1][0]; mMatrix[1][1] = m[1][1]; mMatrix[1][2] = m[1][2];
+        mMatrix[2][0] = m[2][0]; mMatrix[2][1] = m[2][1]; mMatrix[2][2] = m[2][2];
+        mMatrix[3][0] = m[3][0]; mMatrix[3][1] = m[3][1]; mMatrix[3][2] = m[3][2];
     }
     
     /**
@@ -120,10 +119,10 @@ public class MlTransform
      */
     public final void setValue(MlTransform m)
     {
-        m_matrix[0][0] = m.m_matrix[0][0]; m_matrix[0][1] = m.m_matrix[0][1]; m_matrix[0][2] = m.m_matrix[0][2];
-        m_matrix[1][0] = m.m_matrix[1][0]; m_matrix[1][1] = m.m_matrix[1][1]; m_matrix[1][2] = m.m_matrix[1][2];
-        m_matrix[2][0] = m.m_matrix[2][0]; m_matrix[2][1] = m.m_matrix[2][1]; m_matrix[2][2] = m.m_matrix[2][2];
-        m_matrix[3][0] = m.m_matrix[3][0]; m_matrix[3][1] = m.m_matrix[3][1]; m_matrix[3][2] = m.m_matrix[3][2];        
+        mMatrix[0][0] = m.mMatrix[0][0]; mMatrix[0][1] = m.mMatrix[0][1]; mMatrix[0][2] = m.mMatrix[0][2];
+        mMatrix[1][0] = m.mMatrix[1][0]; mMatrix[1][1] = m.mMatrix[1][1]; mMatrix[1][2] = m.mMatrix[1][2];
+        mMatrix[2][0] = m.mMatrix[2][0]; mMatrix[2][1] = m.mMatrix[2][1]; mMatrix[2][2] = m.mMatrix[2][2];
+        mMatrix[3][0] = m.mMatrix[3][0]; mMatrix[3][1] = m.mMatrix[3][1]; mMatrix[3][2] = m.mMatrix[3][2];
     }
     
     /**
@@ -135,10 +134,10 @@ public class MlTransform
     public final float[][] getValue()
     {
         float[][] m = new float[4][3];
-        m[0][0] = m_matrix[0][0]; m[0][1] = m_matrix[0][1]; m[0][2] = m_matrix[0][2];
-        m[1][0] = m_matrix[1][0]; m[1][1] = m_matrix[1][1]; m[1][2] = m_matrix[1][2];
-        m[2][0] = m_matrix[2][0]; m[2][1] = m_matrix[2][1]; m[2][2] = m_matrix[2][2];
-        m[3][0] = m_matrix[3][0]; m[3][1] = m_matrix[3][1]; m[3][2] = m_matrix[3][2];
+        m[0][0] = mMatrix[0][0]; m[0][1] = mMatrix[0][1]; m[0][2] = mMatrix[0][2];
+        m[1][0] = mMatrix[1][0]; m[1][1] = mMatrix[1][1]; m[1][2] = mMatrix[1][2];
+        m[2][0] = mMatrix[2][0]; m[2][1] = mMatrix[2][1]; m[2][2] = mMatrix[2][2];
+        m[3][0] = mMatrix[3][0]; m[3][1] = mMatrix[3][1]; m[3][2] = mMatrix[3][2];
         return m;
     }
     
@@ -147,10 +146,10 @@ public class MlTransform
      */
     public final void makeIdentity()
     {
-        m_matrix[0][0] = 1f; m_matrix[0][1] = 0f; m_matrix[0][2] = 0f;
-        m_matrix[1][0] = 0f; m_matrix[1][1] = 1f; m_matrix[1][2] = 0f;
-        m_matrix[2][0] = 0f; m_matrix[2][1] = 0f; m_matrix[2][2] = 1f;
-        m_matrix[3][0] = 0f; m_matrix[3][1] = 0f; m_matrix[3][2] = 0f;
+        mMatrix[0][0] = 1f; mMatrix[0][1] = 0f; mMatrix[0][2] = 0f;
+        mMatrix[1][0] = 0f; mMatrix[1][1] = 1f; mMatrix[1][2] = 0f;
+        mMatrix[2][0] = 0f; mMatrix[2][1] = 0f; mMatrix[2][2] = 1f;
+        mMatrix[3][0] = 0f; mMatrix[3][1] = 0f; mMatrix[3][2] = 0f;
     }
     
     /**
@@ -185,7 +184,7 @@ public class MlTransform
      */
     public final boolean isIdentity()
     {
-        return checkIdentity(m_matrix);
+        return checkIdentity(mMatrix);
     }
     
     /**
@@ -193,10 +192,10 @@ public class MlTransform
      */
     public final void setZero()
     {
-        m_matrix[0][0] = 0f; m_matrix[0][1] = 0f; m_matrix[0][2] = 0f;
-        m_matrix[1][0] = 0f; m_matrix[1][1] = 0f; m_matrix[1][2] = 0f;
-        m_matrix[2][0] = 0f; m_matrix[2][1] = 0f; m_matrix[2][2] = 0f;
-        m_matrix[3][0] = 0f; m_matrix[3][1] = 0f; m_matrix[3][2] = 0f;
+        mMatrix[0][0] = 0f; mMatrix[0][1] = 0f; mMatrix[0][2] = 0f;
+        mMatrix[1][0] = 0f; mMatrix[1][1] = 0f; mMatrix[1][2] = 0f;
+        mMatrix[2][0] = 0f; mMatrix[2][1] = 0f; mMatrix[2][2] = 0f;
+        mMatrix[3][0] = 0f; mMatrix[3][1] = 0f; mMatrix[3][2] = 0f;
     }
     
     /**
@@ -207,10 +206,10 @@ public class MlTransform
      */
     public final boolean isZero()
     {
-        if ((m_matrix[0][0] == 0) && (m_matrix[0][1] == 0) && (m_matrix[0][2] == 0) &&
-            (m_matrix[1][0] == 0) && (m_matrix[1][1] == 0) && (m_matrix[1][2] == 0) &&
-            (m_matrix[2][0] == 0) && (m_matrix[2][1] == 0) && (m_matrix[2][2] == 0) &&
-            (m_matrix[3][0] == 0) && (m_matrix[3][1] == 0) && (m_matrix[3][2] == 0))
+        if ((mMatrix[0][0] == 0) && (mMatrix[0][1] == 0) && (mMatrix[0][2] == 0) &&
+            (mMatrix[1][0] == 0) && (mMatrix[1][1] == 0) && (mMatrix[1][2] == 0) &&
+            (mMatrix[2][0] == 0) && (mMatrix[2][1] == 0) && (mMatrix[2][2] == 0) &&
+            (mMatrix[3][0] == 0) && (mMatrix[3][1] == 0) && (mMatrix[3][2] == 0))
             return true;
         else
             return false;
@@ -219,12 +218,12 @@ public class MlTransform
     // Returns determinant of 3x3 submatrix composed of given row indices (0-3).
     private float det3(int r1, int r2, int r3)
     {
-        return (((m_matrix[r1][0] * m_matrix[r2][1]) * m_matrix[r3][2])
-             +  ((m_matrix[r1][1] * m_matrix[r2][2]) * m_matrix[r3][0])
-             +  ((m_matrix[r1][2] * m_matrix[r2][0]) * m_matrix[r3][1])
-             -  ((m_matrix[r1][0] * m_matrix[r2][2]) * m_matrix[r3][1])
-             -  ((m_matrix[r1][1] * m_matrix[r2][0]) * m_matrix[r3][2])
-             -  ((m_matrix[r1][2] * m_matrix[r2][1]) * m_matrix[r3][0]));
+        return (((mMatrix[r1][0] * mMatrix[r2][1]) * mMatrix[r3][2])
+             +  ((mMatrix[r1][1] * mMatrix[r2][2]) * mMatrix[r3][0])
+             +  ((mMatrix[r1][2] * mMatrix[r2][0]) * mMatrix[r3][1])
+             -  ((mMatrix[r1][0] * mMatrix[r2][2]) * mMatrix[r3][1])
+             -  ((mMatrix[r1][1] * mMatrix[r2][0]) * mMatrix[r3][2])
+             -  ((mMatrix[r1][2] * mMatrix[r2][1]) * mMatrix[r3][0]));
     }
     
     /**
@@ -289,10 +288,10 @@ public class MlTransform
         {
             for (j = 0; j < 3; j++)
             {
-                a.m_matrix[i][j] = a.m_matrix[i][j] * scratch;
+                a.mMatrix[i][j] = a.mMatrix[i][j] * scratch;
             }
-            t.m_vector[i] = (m_matrix[3][i] * scratch);
-            a.m_matrix[3][i] = MlScalar.ML_SCALAR_ZERO;
+            t.mVector[i] = (mMatrix[3][i] * scratch);
+            a.mMatrix[3][i] = MlScalar.ML_SCALAR_ZERO;
         }
         
         /* (3) Compute det A. If negative, set sign = -1, else sign = 1 */
@@ -309,17 +308,17 @@ public class MlTransform
         // Find min / max eigenvalues and do ratio test to determine singularity.
         
         r.setValue(new MlTransform(
-            evectors[0].m_vector[0], evectors[0].m_vector[1], evectors[0].m_vector[2], 
-        	evectors[1].m_vector[0], evectors[1].m_vector[1], evectors[1].m_vector[2], 
-        	evectors[2].m_vector[0], evectors[2].m_vector[1], evectors[2].m_vector[2], 
+            evectors[0].mVector[0], evectors[0].mVector[1], evectors[0].mVector[2],
+        	evectors[1].mVector[0], evectors[1].mVector[1], evectors[1].mVector[2],
+        	evectors[2].mVector[0], evectors[2].mVector[1], evectors[2].mVector[2],
         	MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO));
         
         /* Compute s = sqrt(evalues), with sign. Set si = s-inverse */
         si.makeIdentity();
         for (i = 0; i < 3; i++)
         {
-            s.m_vector[i] = (det_sign * (float)Math.sqrt(evalues[i]));
-            si.m_matrix[i][i] = (1 / s.m_vector[i]);
+            s.mVector[i] = (det_sign * (float)Math.sqrt(evalues[i]));
+            si.mMatrix[i][i] = (1 / s.mVector[i]);
         }
         
         /* (5) Compute U = R^ S! R A. */
@@ -346,11 +345,11 @@ public class MlTransform
 		// Initializations.
 		for (i = 0; i < 3; i++)
 		{
-		  b[i] = evalues[i] = m_matrix[i][i];
+		  b[i] = evalues[i] = mMatrix[i][i];
 		  z[i] = MlScalar.ML_SCALAR_ZERO;
 		  for (j = 0; j < 3; j++) {
-		      evectors[i].m_vector[j] = (i == j) ? MlScalar.ML_SCALAR_ONE : MlScalar.ML_SCALAR_ZERO;
-		      a[i][j] = m_matrix[i][j];
+		      evectors[i].mVector[j] = (i == j) ? MlScalar.ML_SCALAR_ONE : MlScalar.ML_SCALAR_ZERO;
+		      a[i][j] = mMatrix[i][j];
 		  }
 		}
 		
@@ -432,10 +431,10 @@ public class MlTransform
 		      
 		              for (j = 0; j < 3; j++)
 		              {
-		                  g = evectors[j].m_vector[p];
-		                  h = evectors[j].m_vector[q];
-		                  evectors[j].m_vector[p] = g - (s * (h + (g * tau)));
-		                  evectors[j].m_vector[q] = h + (s * (g - (h * tau)));
+		                  g = evectors[j].mVector[p];
+		                  h = evectors[j].mVector[q];
+		                  evectors[j].mVector[p] = g - (s * (h + (g * tau)));
+		                  evectors[j].mVector[q] = h + (s * (g - (h * tau)));
 		              }
 		          }
 		          rots[0]++;
@@ -485,7 +484,7 @@ public class MlTransform
     public final MlTransform inverse()
     {
 	    // Trivial case
-	    if (checkIdentity(m_matrix))
+	    if (checkIdentity(mMatrix))
 	        return MlTransform.identity();
 	
 	    float[][] result = new float[4][3];
@@ -498,27 +497,27 @@ public class MlTransform
 	    float pos, neg, temp;
 	
 	    pos = neg = MlScalar.ML_SCALAR_ZERO;
-	    temp =  ((m_matrix[0][0] * m_matrix[1][1]) * m_matrix[2][2]);
+	    temp =  ((mMatrix[0][0] * mMatrix[1][1]) * mMatrix[2][2]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 	
-	    temp =  ((m_matrix[0][1] * m_matrix[1][2]) * m_matrix[2][0]);
+	    temp =  ((mMatrix[0][1] * mMatrix[1][2]) * mMatrix[2][0]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 
-	    temp =  ((m_matrix[0][2] * m_matrix[1][0]) * m_matrix[2][1]);
+	    temp =  ((mMatrix[0][2] * mMatrix[1][0]) * mMatrix[2][1]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 
-	    temp = -((m_matrix[0][2] * m_matrix[1][1]) * m_matrix[2][0]);
+	    temp = -((mMatrix[0][2] * mMatrix[1][1]) * mMatrix[2][0]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 
-	    temp = -((m_matrix[0][1] * m_matrix[1][0]) * m_matrix[2][2]);
+	    temp = -((mMatrix[0][1] * mMatrix[1][0]) * mMatrix[2][2]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 
-	    temp = -((m_matrix[0][0] * m_matrix[1][2]) * m_matrix[2][1]);
+	    temp = -((mMatrix[0][0] * mMatrix[1][2]) * mMatrix[2][1]);
 		if (temp >= MlScalar.ML_SCALAR_ZERO) pos += temp;
 		else neg += temp;
 
@@ -530,30 +529,30 @@ public class MlTransform
 	    // Is the submatrix A singular?
 	    temp = det_1 / (pos - neg);
 	    if (Math.abs(temp) < PRECISION_LIMIT)
-	        return new MlTransform(m_matrix);
+	        return new MlTransform(mMatrix);
 
 	    // Calculate inverse(A) = adj(A) / det(A)
 	    det_1 = 1 / det_1;
-	    result[0][0] =  ((m_matrix[1][1] * m_matrix[2][2]) - (m_matrix[1][2] * m_matrix[2][1]) * det_1);
-	    result[1][0] = -((m_matrix[1][0] * m_matrix[2][2]) - (m_matrix[1][2] * m_matrix[2][0]) * det_1);
-	    result[2][0] =  ((m_matrix[1][0] * m_matrix[2][1]) - (m_matrix[1][1] * m_matrix[2][0]) * det_1);
-	    result[0][1] = -((m_matrix[0][1] * m_matrix[2][2]) - (m_matrix[0][2] * m_matrix[2][1]) * det_1);
-	    result[1][1] =  ((m_matrix[0][0] * m_matrix[2][2]) - (m_matrix[0][2] * m_matrix[2][0]) * det_1);
-	    result[2][1] = -((m_matrix[0][0] * m_matrix[2][1]) - (m_matrix[0][1] * m_matrix[2][0]) * det_1);
-	    result[0][2] =  ((m_matrix[0][1] * m_matrix[1][2]) - (m_matrix[0][2] * m_matrix[1][1]) * det_1);
-	    result[1][2] = -((m_matrix[0][0] * m_matrix[1][2]) - (m_matrix[0][2] * m_matrix[1][0]) * det_1);
-	    result[2][2] =  ((m_matrix[0][0] * m_matrix[1][1]) - (m_matrix[0][1] * m_matrix[1][0]) * det_1);
+	    result[0][0] =  ((mMatrix[1][1] * mMatrix[2][2]) - (mMatrix[1][2] * mMatrix[2][1]) * det_1);
+	    result[1][0] = -((mMatrix[1][0] * mMatrix[2][2]) - (mMatrix[1][2] * mMatrix[2][0]) * det_1);
+	    result[2][0] =  ((mMatrix[1][0] * mMatrix[2][1]) - (mMatrix[1][1] * mMatrix[2][0]) * det_1);
+	    result[0][1] = -((mMatrix[0][1] * mMatrix[2][2]) - (mMatrix[0][2] * mMatrix[2][1]) * det_1);
+	    result[1][1] =  ((mMatrix[0][0] * mMatrix[2][2]) - (mMatrix[0][2] * mMatrix[2][0]) * det_1);
+	    result[2][1] = -((mMatrix[0][0] * mMatrix[2][1]) - (mMatrix[0][1] * mMatrix[2][0]) * det_1);
+	    result[0][2] =  ((mMatrix[0][1] * mMatrix[1][2]) - (mMatrix[0][2] * mMatrix[1][1]) * det_1);
+	    result[1][2] = -((mMatrix[0][0] * mMatrix[1][2]) - (mMatrix[0][2] * mMatrix[1][0]) * det_1);
+	    result[2][2] =  ((mMatrix[0][0] * mMatrix[1][1]) - (mMatrix[0][1] * mMatrix[1][0]) * det_1);
 	
 	    // Calculate -C * inverse(A)
-	    result[3][0] = -( (m_matrix[3][0] * result[0][0]) + 
-	                      (m_matrix[3][1] * result[1][0]) + 
-	                      (m_matrix[3][2] * result[2][0]) );
-	    result[3][1] = -( (m_matrix[3][0] * result[0][1]) + 
-	                      (m_matrix[3][1] * result[1][1]) + 
-	                      (m_matrix[3][2] * result[2][1]) );
-	    result[3][2] = -( (m_matrix[3][0] * result[0][2]) + 
-	                      (m_matrix[3][1] * result[1][2]) + 
-	                      (m_matrix[3][2] * result[2][2]) );
+	    result[3][0] = -( (mMatrix[3][0] * result[0][0]) +
+	                      (mMatrix[3][1] * result[1][0]) +
+	                      (mMatrix[3][2] * result[2][0]) );
+	    result[3][1] = -( (mMatrix[3][0] * result[0][1]) +
+	                      (mMatrix[3][1] * result[1][1]) +
+	                      (mMatrix[3][2] * result[2][1]) );
+	    result[3][2] = -( (mMatrix[3][0] * result[0][2]) +
+	                      (mMatrix[3][1] * result[1][2]) +
+	                      (mMatrix[3][2] * result[2][2]) );
 	
 	    return new MlTransform(result);
 	}
@@ -562,9 +561,9 @@ public class MlTransform
     public final MlTransform transpose()
     {
         return new MlTransform(
-                m_matrix[0][0], m_matrix[1][0], m_matrix[2][0], 
-                m_matrix[0][1], m_matrix[1][1], m_matrix[2][1], 
-                m_matrix[0][2], m_matrix[1][2], m_matrix[2][2], 
+                mMatrix[0][0], mMatrix[1][0], mMatrix[2][0],
+                mMatrix[0][1], mMatrix[1][1], mMatrix[2][1],
+                mMatrix[0][2], mMatrix[1][2], mMatrix[2][2],
                 0f, 0f, 0f);
     }
     
@@ -572,11 +571,11 @@ public class MlTransform
     public final MlTransform mulRight(MlTransform trans)
     {
         // Trivial cases.
-        if (checkIdentity(trans.m_matrix))
+        if (checkIdentity(trans.mMatrix))
             return this;
-        else if (checkIdentity(m_matrix))
+        else if (checkIdentity(mMatrix))
         {
-            setValue(trans.m_matrix);
+            setValue(trans.mMatrix);
             return this;
         }
         
@@ -584,15 +583,15 @@ public class MlTransform
         
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                tmp[i][j] = ((m_matrix[i][0] * trans.m_matrix[0][j]) +
-                             (m_matrix[i][1] * trans.m_matrix[1][j]) +
-                             (m_matrix[i][2] * trans.m_matrix[2][j]));
+                tmp[i][j] = ((mMatrix[i][0] * trans.mMatrix[0][j]) +
+                             (mMatrix[i][1] * trans.mMatrix[1][j]) +
+                             (mMatrix[i][2] * trans.mMatrix[2][j]));
         
         for (int i = 0; i < 3; i++)
-            tmp[3][i] = ((m_matrix[3][0] * trans.m_matrix[0][i]) +
-                         (m_matrix[3][1] * trans.m_matrix[1][i]) +
-                         (m_matrix[3][2] * trans.m_matrix[2][i]) +
-                         trans.m_matrix[3][i]);
+            tmp[3][i] = ((mMatrix[3][0] * trans.mMatrix[0][i]) +
+                         (mMatrix[3][1] * trans.mMatrix[1][i]) +
+                         (mMatrix[3][2] * trans.mMatrix[2][i]) +
+                         trans.mMatrix[3][i]);
 
         // Save calculated value.
         setValue(tmp);
@@ -604,11 +603,11 @@ public class MlTransform
     public final MlTransform mulLeft(MlTransform trans)
     {
         // Trivial cases.
-        if (checkIdentity(trans.m_matrix))
+        if (checkIdentity(trans.mMatrix))
             return this;
-        else if (checkIdentity(m_matrix))
+        else if (checkIdentity(mMatrix))
         {
-            setValue(trans.m_matrix);
+            setValue(trans.mMatrix);
             return this;
         }
         
@@ -616,15 +615,15 @@ public class MlTransform
         
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
-                tmp[i][j] = ((trans.m_matrix[i][0] * m_matrix[0][j]) +
-                             (trans.m_matrix[i][1] * m_matrix[1][j]) +
-                             (trans.m_matrix[i][2] * m_matrix[2][j]));
+                tmp[i][j] = ((trans.mMatrix[i][0] * mMatrix[0][j]) +
+                             (trans.mMatrix[i][1] * mMatrix[1][j]) +
+                             (trans.mMatrix[i][2] * mMatrix[2][j]));
         
         for (int i = 0; i < 3; i++)
-            tmp[3][i] = ((trans.m_matrix[3][0] * m_matrix[0][i]) +
-                         (trans.m_matrix[3][1] * m_matrix[1][i]) +
-                         (trans.m_matrix[3][2] * m_matrix[2][i]) +
-                         m_matrix[3][i]);
+            tmp[3][i] = ((trans.mMatrix[3][0] * mMatrix[0][i]) +
+                         (trans.mMatrix[3][1] * mMatrix[1][i]) +
+                         (trans.mMatrix[3][2] * mMatrix[2][i]) +
+                         mMatrix[3][i]);
 
         // Save calculated value.
         setValue(tmp);
@@ -640,12 +639,12 @@ public class MlTransform
         float[] v = new float[3];
         src.getValue(v);
         
-        x = (m_matrix[0][0] * v[0]) + (m_matrix[0][1] * v[1]) +
-        	(m_matrix[0][2] * v[2]);
-        y = (m_matrix[1][0] * v[0]) + (m_matrix[1][1] * v[1]) +
-    		(m_matrix[1][2] * v[2]);
-        z = (m_matrix[2][0] * v[0]) + (m_matrix[2][1] * v[1]) +
-    		(m_matrix[2][2] * v[2]);
+        x = (mMatrix[0][0] * v[0]) + (mMatrix[0][1] * v[1]) +
+        	(mMatrix[0][2] * v[2]);
+        y = (mMatrix[1][0] * v[0]) + (mMatrix[1][1] * v[1]) +
+    		(mMatrix[1][2] * v[2]);
+        z = (mMatrix[2][0] * v[0]) + (mMatrix[2][1] * v[1]) +
+    		(mMatrix[2][2] * v[2]);
 
         dst.setValue(x,y,z);
     }
@@ -658,12 +657,12 @@ public class MlTransform
         float[] v = new float[3];
         src.getValue(v);
         
-        x = (v[0] * m_matrix[0][0]) + (v[1] * m_matrix[1][0]) +
-            (v[2] * m_matrix[2][0]) + m_matrix[3][0];
-        y = (v[0] * m_matrix[0][1]) + (v[1] * m_matrix[1][1]) +
-        	(v[2] * m_matrix[2][1]) + m_matrix[3][1];
-        z = (v[0] * m_matrix[0][2]) + (v[1] * m_matrix[1][2]) +
-        	(v[2] * m_matrix[2][2]) + m_matrix[3][2];
+        x = (v[0] * mMatrix[0][0]) + (v[1] * mMatrix[1][0]) +
+            (v[2] * mMatrix[2][0]) + mMatrix[3][0];
+        y = (v[0] * mMatrix[0][1]) + (v[1] * mMatrix[1][1]) +
+        	(v[2] * mMatrix[2][1]) + mMatrix[3][1];
+        z = (v[0] * mMatrix[0][2]) + (v[1] * mMatrix[1][2]) +
+        	(v[2] * mMatrix[2][2]) + mMatrix[3][2];
 
         dst.setValue(x,y,z);
     }
@@ -678,12 +677,12 @@ public class MlTransform
         float[] v = new float[3];
         src.getValue(v);
         
-        x = (v[0] * m_matrix[0][0]) + (v[1] * m_matrix[1][0]) +
-        	(v[2] * m_matrix[2][0]);
-        y = (v[0] * m_matrix[0][1]) + (v[1] * m_matrix[1][1]) +
-    		(v[2] * m_matrix[2][1]);
-        z = (v[0] * m_matrix[0][2]) + (v[1] * m_matrix[1][2]) +
-    		(v[2] * m_matrix[2][2]);
+        x = (v[0] * mMatrix[0][0]) + (v[1] * mMatrix[1][0]) +
+        	(v[2] * mMatrix[2][0]);
+        y = (v[0] * mMatrix[0][1]) + (v[1] * mMatrix[1][1]) +
+    		(v[2] * mMatrix[2][1]);
+        z = (v[0] * mMatrix[0][2]) + (v[1] * mMatrix[1][2]) +
+    		(v[2] * mMatrix[2][2]);
 
         dst.setValue(x,y,z);
     }
@@ -710,7 +709,7 @@ public class MlTransform
         for (i = 0; i < 4; i++)
             for (j = 0; j < 3; j++)
             {
-                d = m_matrix[i][j] - trans.m_matrix[i][j];
+                d = mMatrix[i][j] - trans.mMatrix[i][j];
                 if (Math.abs(d) > tolerance)
                     return false;
             }
@@ -892,9 +891,9 @@ public class MlTransform
         /*
         for (int i = 0; i < 3; i++)
         {
-            s[i] = (m_matrix[i][0] * m_matrix[i][0]) +
-                   (m_matrix[i][1] * m_matrix[i][1]) +
-                   (m_matrix[i][2] * m_matrix[i][2]);
+            s[i] = (mMatrix[i][0] * mMatrix[i][0]) +
+                   (mMatrix[i][1] * mMatrix[i][1]) +
+                   (mMatrix[i][2] * mMatrix[i][2]);
             s[i] = (float)Math.sqrt(s[i]);
         }
         */
@@ -914,9 +913,9 @@ public class MlTransform
     {
         for (int i = 0; i < 3; i++)
         {
-            scale[i] = (m_matrix[i][0] * m_matrix[i][0]) +
-                       (m_matrix[i][1] * m_matrix[i][1]) +
-                       (m_matrix[i][2] * m_matrix[i][2]);
+            scale[i] = (mMatrix[i][0] * mMatrix[i][0]) +
+                       (mMatrix[i][1] * mMatrix[i][1]) +
+                       (mMatrix[i][2] * mMatrix[i][2]);
             scale[i] = (float)Math.sqrt(scale[i]);
         }
     }
@@ -924,10 +923,10 @@ public class MlTransform
     // Sets matrix to scale by given uniform factor
     public final void setScale(float scale)
     {
-        m_matrix[0][0] = scale; m_matrix[0][1] = 0f; m_matrix[0][2] = 0f;
-        m_matrix[1][0] = 0f; m_matrix[1][1] = scale; m_matrix[1][2] = 0f;
-        m_matrix[2][0] = 0f; m_matrix[2][1] = 0f; m_matrix[2][2] = scale;
-        m_matrix[3][0] = 0f; m_matrix[3][1] = 0f; m_matrix[3][2] = 0f;
+        mMatrix[0][0] = scale; mMatrix[0][1] = 0f; mMatrix[0][2] = 0f;
+        mMatrix[1][0] = 0f; mMatrix[1][1] = scale; mMatrix[1][2] = 0f;
+        mMatrix[2][0] = 0f; mMatrix[2][1] = 0f; mMatrix[2][2] = scale;
+        mMatrix[3][0] = 0f; mMatrix[3][1] = 0f; mMatrix[3][2] = 0f;
     }
 
     // Sets matrix to scale by given vector.
@@ -940,10 +939,10 @@ public class MlTransform
     
     private void setScale(float[] v)
     {
-        m_matrix[0][0] = v[0]; m_matrix[0][1] = 0f; m_matrix[0][2] = 0f;
-        m_matrix[1][0] = 0f; m_matrix[1][1] = v[1]; m_matrix[1][2] = 0f;
-        m_matrix[2][0] = 0f; m_matrix[2][1] = 0f; m_matrix[2][2] = v[2];
-        m_matrix[3][0] = 0f; m_matrix[3][1] = 0f; m_matrix[3][2] = 0f;
+        mMatrix[0][0] = v[0]; mMatrix[0][1] = 0f; mMatrix[0][2] = 0f;
+        mMatrix[1][0] = 0f; mMatrix[1][1] = v[1]; mMatrix[1][2] = 0f;
+        mMatrix[2][0] = 0f; mMatrix[2][1] = 0f; mMatrix[2][2] = v[2];
+        mMatrix[3][0] = 0f; mMatrix[3][1] = 0f; mMatrix[3][2] = 0f;
     }
 
 	//  Sets the scales of the given transform to the X,Y,Z nonuniform scales
@@ -995,7 +994,7 @@ public class MlTransform
 
              for (j = 0; j < 3; j++)
              {
-                 t[i][j] = m_matrix[i][j];
+                 t[i][j] = mMatrix[i][j];
                  total += t[i][j] * t[i][j];
              }
              if (total != MlScalar.ML_SCALAR_ZERO)
@@ -1062,7 +1061,7 @@ public class MlTransform
 
             for (j = 0; j < 3; j++)
             {
-                t[i][j] = m_matrix[i][j];
+                t[i][j] = mMatrix[i][j];
                 total += t[i][j] * t[i][j];
             }
             if (total != MlScalar.ML_SCALAR_ZERO)
@@ -1281,14 +1280,14 @@ public class MlTransform
             float angle = MlAngle.degreesToAngle(r[2]);
             float sz = MlMath.mlSin(angle);
             float cz = MlMath.mlCos(angle);
-            mat.m_matrix[0][0] = cz;
-            mat.m_matrix[0][1] = sz;
-            mat.m_matrix[1][0] = -sz;
-            mat.m_matrix[1][1] = cz;
-            mat.m_matrix[2][2] = MlScalar.ML_SCALAR_ONE;
-            mat.m_matrix[0][2] = mat.m_matrix[1][2] = mat.m_matrix[2][0] =
-            mat.m_matrix[2][1] = mat.m_matrix[3][0] = mat.m_matrix[3][1] =
-            mat.m_matrix[3][2] = MlScalar.ML_SCALAR_ZERO;
+            mat.mMatrix[0][0] = cz;
+            mat.mMatrix[0][1] = sz;
+            mat.mMatrix[1][0] = -sz;
+            mat.mMatrix[1][1] = cz;
+            mat.mMatrix[2][2] = MlScalar.ML_SCALAR_ONE;
+            mat.mMatrix[0][2] = mat.mMatrix[1][2] = mat.mMatrix[2][0] =
+            mat.mMatrix[2][1] = mat.mMatrix[3][0] = mat.mMatrix[3][1] =
+            mat.mMatrix[3][2] = MlScalar.ML_SCALAR_ZERO;
             mulRight(mat);
         }
 
@@ -1298,14 +1297,14 @@ public class MlTransform
             float angle = MlAngle.degreesToAngle(r[1]);
             float sy = MlMath.mlSin(angle);
             float cy = MlMath.mlCos(angle);
-            mat.m_matrix[0][0] = cy;
-            mat.m_matrix[0][2] = -sy;
-            mat.m_matrix[1][1] = MlScalar.ML_SCALAR_ONE;
-            mat.m_matrix[2][0] = sy;
-            mat.m_matrix[2][2] = cy;
-            mat.m_matrix[0][1] = mat.m_matrix[1][0] = mat.m_matrix[1][2] =
-            mat.m_matrix[2][1] = mat.m_matrix[3][0] = mat.m_matrix[3][1] =
-            mat.m_matrix[3][2] = MlScalar.ML_SCALAR_ZERO;
+            mat.mMatrix[0][0] = cy;
+            mat.mMatrix[0][2] = -sy;
+            mat.mMatrix[1][1] = MlScalar.ML_SCALAR_ONE;
+            mat.mMatrix[2][0] = sy;
+            mat.mMatrix[2][2] = cy;
+            mat.mMatrix[0][1] = mat.mMatrix[1][0] = mat.mMatrix[1][2] =
+            mat.mMatrix[2][1] = mat.mMatrix[3][0] = mat.mMatrix[3][1] =
+            mat.mMatrix[3][2] = MlScalar.ML_SCALAR_ZERO;
             mulRight(mat);
          }
 
@@ -1315,14 +1314,14 @@ public class MlTransform
             float angle = MlAngle.degreesToAngle(r[0]);
             float sx = MlMath.mlSin(angle);
             float cx = (float)MlMath.mlCos(angle);
-            mat.m_matrix[0][0]= MlScalar.ML_SCALAR_ONE;
-            mat.m_matrix[1][1] = cx;
-            mat.m_matrix[1][2] = sx;
-            mat.m_matrix[2][1] = -sx;
-            mat.m_matrix[2][2] = cx;
-            mat.m_matrix[0][1] = mat.m_matrix[0][2] = mat.m_matrix[1][0] =
-            mat.m_matrix[2][0] = mat.m_matrix[3][0] = mat.m_matrix[3][1] =
-            mat.m_matrix[3][2] = MlScalar.ML_SCALAR_ZERO;
+            mat.mMatrix[0][0]= MlScalar.ML_SCALAR_ONE;
+            mat.mMatrix[1][1] = cx;
+            mat.mMatrix[1][2] = sx;
+            mat.mMatrix[2][1] = -sx;
+            mat.mMatrix[2][2] = cx;
+            mat.mMatrix[0][1] = mat.mMatrix[0][2] = mat.mMatrix[1][0] =
+            mat.mMatrix[2][0] = mat.mMatrix[3][0] = mat.mMatrix[3][1] =
+            mat.mMatrix[3][2] = MlScalar.ML_SCALAR_ZERO;
             mulRight(mat);
         }
     }
@@ -1339,7 +1338,7 @@ public class MlTransform
     public final void getTranslation(float[] v)
     {
         for (int i = 0; i < 3; i++)
-            v[i] = m_matrix[3][i];
+            v[i] = mMatrix[3][i];
     }
     
     // Sets matrix to the translation matrix given by the vector
@@ -1348,10 +1347,10 @@ public class MlTransform
         float[] t = new float[3];
         translation.getValue(t);
 
-        m_matrix[0][0] = 1f; m_matrix[0][1] = 0f; m_matrix[0][2] = 0f;
-        m_matrix[1][0] = 0f; m_matrix[1][1] = 1f; m_matrix[1][2] = 0f;
-        m_matrix[2][0] = 0f; m_matrix[2][1] = 0f; m_matrix[2][2] = 1f;
-        m_matrix[3][0] = t[0]; m_matrix[3][1] = t[1]; m_matrix[3][2] = t[2];
+        mMatrix[0][0] = 1f; mMatrix[0][1] = 0f; mMatrix[0][2] = 0f;
+        mMatrix[1][0] = 0f; mMatrix[1][1] = 1f; mMatrix[1][2] = 0f;
+        mMatrix[2][0] = 0f; mMatrix[2][1] = 0f; mMatrix[2][2] = 1f;
+        mMatrix[3][0] = t[0]; mMatrix[3][1] = t[1]; mMatrix[3][2] = t[2];
      }
 
     // Sets the translation of the given transform to the X,Y,Z translations 
@@ -1366,7 +1365,7 @@ public class MlTransform
     private void setTranslationOnly(float[]t)
     {
         for (int i = 0; i < 3; i++)
-            m_matrix[3][i] = t[i];
+            mMatrix[3][i] = t[i];
     }
     
     // Adds the given X,Y,Z translations to the existing translation
@@ -1377,7 +1376,7 @@ public class MlTransform
         translation.getValue(t);
 
         for (int i = 0; i < 3; i++)
-            m_matrix[3][i] = m_matrix[3][i] + t[i];
+            mMatrix[3][i] = mMatrix[3][i] + t[i];
     }
 
 }

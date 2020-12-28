@@ -7,7 +7,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 Wizzer Works
+// Copyright (c) 2019-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,13 +41,11 @@ package com.wizzer.mle.math;
 
 /**
  * This class specifies a rotation, used to define the orientation of a 3d object.
- * 
- * @author Mark S. Millard
  */
 public class MlRotation
 {
     // The internal quaternion representation.
-    public float[] m_quat = new float[4];
+    public float[] mQuat = new float[4];
     
     /**
      * The default constructor. The quaternion is created as an
@@ -126,10 +124,10 @@ public class MlRotation
      */
     public final void getValue(float[] v)
     {
-        v[0] = m_quat[0];
-        v[1] = m_quat[1];
-        v[2] = m_quat[2];
-        v[3] = m_quat[3];
+        v[0] = mQuat[0];
+        v[1] = mQuat[1];
+        v[2] = mQuat[2];
+        v[3] = mQuat[3];
     }
     
     /**
@@ -143,14 +141,14 @@ public class MlRotation
         float len;
         MlVector3 q = new MlVector3();
 
-        q.m_vector[0] = m_quat[0];
-        q.m_vector[1] = m_quat[1];
-        q.m_vector[2] = m_quat[2];
+        q.mVector[0] = mQuat[0];
+        q.mVector[1] = mQuat[1];
+        q.mVector[2] = mQuat[2];
 
         if ((len = q.length()) > 0.00001f)
         {
             axis = q.mul(1 / len);
-            radians[0] = MlAngle.angleToRadians(2 * (float)MlMath.mlAcos(m_quat[3]));
+            radians[0] = MlAngle.angleToRadians(2 * (float)MlMath.mlAcos(mQuat[3]));
         } else
         {
             axis.setValue(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ONE);
@@ -167,26 +165,26 @@ public class MlRotation
     {
         MlTransform m = new MlTransform();
 
-        m.m_matrix[0][0] = MlScalar.ML_SCALAR_ONE - 2 * ((m_quat[1] * m_quat[1]) + (m_quat[2] * m_quat[2]));
-        m.m_matrix[0][1] = 2 * ((m_quat[0] * m_quat[1]) + (m_quat[2] * m_quat[3]));
-        m.m_matrix[0][2] = 2 * ((m_quat[2] * m_quat[0]) - (m_quat[1] * m_quat[3]));
+        m.mMatrix[0][0] = MlScalar.ML_SCALAR_ONE - 2 * ((mQuat[1] * mQuat[1]) + (mQuat[2] * mQuat[2]));
+        m.mMatrix[0][1] = 2 * ((mQuat[0] * mQuat[1]) + (mQuat[2] * mQuat[3]));
+        m.mMatrix[0][2] = 2 * ((mQuat[2] * mQuat[0]) - (mQuat[1] * mQuat[3]));
 
-        m.m_matrix[1][0] = 2 * ((m_quat[0] * m_quat[1]) - (m_quat[2] * m_quat[3]));
-        m.m_matrix[1][1] = MlScalar.ML_SCALAR_ONE - 2 * ((m_quat[2] * m_quat[2]) + (m_quat[0] * m_quat[0]));
-        m.m_matrix[1][2] = 2 * ((m_quat[1] * m_quat[2]) + (m_quat[0] * m_quat[3]));
+        m.mMatrix[1][0] = 2 * ((mQuat[0] * mQuat[1]) - (mQuat[2] * mQuat[3]));
+        m.mMatrix[1][1] = MlScalar.ML_SCALAR_ONE - 2 * ((mQuat[2] * mQuat[2]) + (mQuat[0] * mQuat[0]));
+        m.mMatrix[1][2] = 2 * ((mQuat[1] * mQuat[2]) + (mQuat[0] * mQuat[3]));
 
-        m.m_matrix[2][0] = 2 * ((m_quat[2] * m_quat[0]) + (m_quat[1] * m_quat[3]));
-        m.m_matrix[2][1] = 2 * ((m_quat[1] * m_quat[2]) - (m_quat[0] * m_quat[3]));
-        m.m_matrix[2][2] = MlScalar.ML_SCALAR_ONE - 2 * ((m_quat[1] * m_quat[1]) + (m_quat[0] * m_quat[0]));
+        m.mMatrix[2][0] = 2 * ((mQuat[2] * mQuat[0]) + (mQuat[1] * mQuat[3]));
+        m.mMatrix[2][1] = 2 * ((mQuat[1] * mQuat[2]) - (mQuat[0] * mQuat[3]));
+        m.mMatrix[2][2] = MlScalar.ML_SCALAR_ONE - 2 * ((mQuat[1] * mQuat[1]) + (mQuat[0] * mQuat[0]));
 
-        m.m_matrix[3][0] = MlScalar.ML_SCALAR_ZERO;
-        m.m_matrix[3][1] = MlScalar.ML_SCALAR_ZERO;
-        m.m_matrix[3][2] = MlScalar.ML_SCALAR_ZERO;
+        m.mMatrix[3][0] = MlScalar.ML_SCALAR_ZERO;
+        m.mMatrix[3][1] = MlScalar.ML_SCALAR_ZERO;
+        m.mMatrix[3][2] = MlScalar.ML_SCALAR_ZERO;
 
         //matrix = m;
         for (int i = 0; i < 4; i ++)
             for (int j = 0; j < 3; j++)
-                matrix.m_matrix[i][j] = m.m_matrix[i][j];
+                matrix.mMatrix[i][j] = m.mMatrix[i][j];
     }
     
 	/**
@@ -202,10 +200,10 @@ public class MlRotation
 	 */
     public final MlRotation setValue(float q1, float q2, float q3, float q4)
     {
-	    m_quat[0] = q1;
-	    m_quat[1] = q2;
-	    m_quat[2] = q3;
-	    m_quat[3] = q4;
+	    mQuat[0] = q1;
+	    mQuat[1] = q2;
+	    mQuat[2] = q3;
+	    mQuat[3] = q4;
 	    
 	    normalize();
 	    
@@ -222,10 +220,10 @@ public class MlRotation
 	 */
 	public final MlRotation setValue(float[] q)
     {
-	    m_quat[0] = q[0];
-	    m_quat[1] = q[1];
-	    m_quat[2] = q[2];
-	    m_quat[3] = q[3];
+	    mQuat[0] = q[0];
+	    mQuat[1] = q[1];
+	    mQuat[2] = q[2];
+	    mQuat[3] = q[3];
 	    
 	    normalize();
 	    
@@ -246,50 +244,50 @@ public class MlRotation
 	    // First, find largest diagonal in matrix:
 	    if (m.isZero())
 	    {
-	        m_quat[3] = MlScalar.ML_SCALAR_ONE;
-	        m_quat[0] = MlScalar.ML_SCALAR_ZERO;
-	        m_quat[1] = MlScalar.ML_SCALAR_ZERO;
-	        m_quat[2] = MlScalar.ML_SCALAR_ZERO;
+	        mQuat[3] = MlScalar.ML_SCALAR_ONE;
+	        mQuat[0] = MlScalar.ML_SCALAR_ZERO;
+	        mQuat[1] = MlScalar.ML_SCALAR_ZERO;
+	        mQuat[2] = MlScalar.ML_SCALAR_ZERO;
 
 	        return this;
 	    }
 
-	    if (m.m_matrix[0][0] > m.m_matrix[1][1])
+	    if (m.mMatrix[0][0] > m.mMatrix[1][1])
 	    { 
-	        if (m.m_matrix[0][0] > m.m_matrix[2][2])
+	        if (m.mMatrix[0][0] > m.mMatrix[2][2])
 	            i = 0;
 	        else i = 2;
 	    } else
 	    {
-	        if (m.m_matrix[1][1] > m.m_matrix[2][2]) 
+	        if (m.mMatrix[1][1] > m.mMatrix[2][2])
 	            i = 1;
 	        else i = 2;
 	    }
 
-	    if (m.m_matrix[0][0] + m.m_matrix[1][1] + m.m_matrix[2][2] > m.m_matrix[i][i]) 
+	    if (m.mMatrix[0][0] + m.mMatrix[1][1] + m.mMatrix[2][2] > m.mMatrix[i][i])
 	    {
 	        // Compute w first:
-	        m_quat[3] = ((float)Math.sqrt(m.m_matrix[0][0] + m.m_matrix[1][1] +
-	        	m.m_matrix[2][2] + MlScalar.ML_SCALAR_ONE) * MlScalar.ML_SCALAR_HALF);
+	        mQuat[3] = ((float)Math.sqrt(m.mMatrix[0][0] + m.mMatrix[1][1] +
+	        	m.mMatrix[2][2] + MlScalar.ML_SCALAR_ONE) * MlScalar.ML_SCALAR_HALF);
 
 	        // And compute other values:
-	        m_quat[0] = ((m.m_matrix[1][2] - m.m_matrix[2][1]) / (4 * m_quat[3]));
-	        m_quat[1] = ((m.m_matrix[2][0] - m.m_matrix[0][2]) / (4 * m_quat[3]));
-	        m_quat[2] = ((m.m_matrix[0][1] - m.m_matrix[1][0]) / (4 * m_quat[3]));
+	        mQuat[0] = ((m.mMatrix[1][2] - m.mMatrix[2][1]) / (4 * mQuat[3]));
+	        mQuat[1] = ((m.mMatrix[2][0] - m.mMatrix[0][2]) / (4 * mQuat[3]));
+	        mQuat[2] = ((m.mMatrix[0][1] - m.mMatrix[1][0]) / (4 * mQuat[3]));
 	    } else
 	    {
 	        // Compute x, y, or z first:
 	        j = (i+1) % 3; k = (i+2) % 3;
 	    
 	        // Compute first value:
-	        m_quat[i] = ((float)Math.sqrt(m.m_matrix[i][i] - m.m_matrix[j][j] -
-	        	m.m_matrix[k][k] + MlScalar.ML_SCALAR_ONE) * MlScalar.ML_SCALAR_HALF);
+	        mQuat[i] = ((float)Math.sqrt(m.mMatrix[i][i] - m.mMatrix[j][j] -
+	        	m.mMatrix[k][k] + MlScalar.ML_SCALAR_ONE) * MlScalar.ML_SCALAR_HALF);
 	       
 	        // And the others:
-	        m_quat[j] = ((m.m_matrix[i][j] + m.m_matrix[j][i]) / (4 * m_quat[i]));
-	        m_quat[k] = ((m.m_matrix[i][k] + m.m_matrix[k][i]) / (4 * m_quat[i]));
+	        mQuat[j] = ((m.mMatrix[i][j] + m.mMatrix[j][i]) / (4 * mQuat[i]));
+	        mQuat[k] = ((m.mMatrix[i][k] + m.mMatrix[k][i]) / (4 * mQuat[i]));
 
-	        m_quat[3] = ((m.m_matrix[j][k] - m.m_matrix[k][j]) / (4 * m_quat[i]));
+	        mQuat[3] = ((m.mMatrix[j][k] - m.mMatrix[k][j]) / (4 * mQuat[i]));
 	    }
 	    
 	    return this;
@@ -312,11 +310,11 @@ public class MlRotation
 
         q.mul((float)MlMath.mlSin(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF))));
 
-        m_quat[0] = q.m_vector[0];
-        m_quat[1] = q.m_vector[1];
-        m_quat[2] = q.m_vector[2];
+        mQuat[0] = q.mVector[0];
+        mQuat[1] = q.mVector[1];
+        mQuat[2] = q.mVector[2];
 
-        m_quat[3] = (float)MlMath.mlCos(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF)));
+        mQuat[3] = (float)MlMath.mlCos(MlAngle.radiansToAngle((radians * MlScalar.ML_SCALAR_HALF)));
 
         return this;
     }
@@ -344,8 +342,8 @@ public class MlRotation
         if (cost > 0.99999f)
         {
             // Vectors are parallel.
-            m_quat[0] = m_quat[1] = m_quat[2] = MlScalar.ML_SCALAR_ZERO;
-            m_quat[3] = MlScalar.ML_SCALAR_ONE;
+            mQuat[0] = mQuat[1] = mQuat[2] = MlScalar.ML_SCALAR_ZERO;
+            mQuat[3] = MlScalar.ML_SCALAR_ONE;
             
             return this;
         } else if (cost < -0.99999f)
@@ -362,7 +360,7 @@ public class MlRotation
                 tmp = from.cross(new MlVector3(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ONE, MlScalar.ML_SCALAR_ZERO));
 
             tmp.normalize();
-            setValue(tmp.m_vector[0], tmp.m_vector[1], tmp.m_vector[2], MlScalar.ML_SCALAR_ZERO);
+            setValue(tmp.mVector[0], tmp.mVector[1], tmp.mVector[2], MlScalar.ML_SCALAR_ZERO);
             
             return this;
         }
@@ -376,13 +374,13 @@ public class MlRotation
 
         // Scale the axis by the sine of half the rotation angle to get
         // the normalized quaternion.
-        m_quat[0] = axis.m_vector[0];
-        m_quat[1] = axis.m_vector[1];
-        m_quat[2] = axis.m_vector[2];
+        mQuat[0] = axis.mVector[0];
+        mQuat[1] = axis.mVector[1];
+        mQuat[2] = axis.mVector[2];
 
         // cos^2 t = ( 1 + cos (2t) ) / 2
         // w part is cosine of half the rotation angle.
-        m_quat[3] = (float)Math.sqrt((MlScalar.ML_SCALAR_HALF * (MlScalar.ML_SCALAR_ONE + cost)));
+        mQuat[3] = (float)Math.sqrt((MlScalar.ML_SCALAR_HALF * (MlScalar.ML_SCALAR_ONE + cost)));
 
         return this;   
     }
@@ -395,10 +393,10 @@ public class MlRotation
 	 */
 	private float norm()
 	{
-	    return ((m_quat[0] * m_quat[0]) +
-	            (m_quat[1] * m_quat[1]) +
-	            (m_quat[2] * m_quat[2]) +
-	            (m_quat[3] * m_quat[3]));
+	    return ((mQuat[0] * mQuat[0]) +
+	            (mQuat[1] * mQuat[1]) +
+	            (mQuat[2] * mQuat[2]) +
+	            (mQuat[3] * mQuat[3]));
 	}
 	
 	/*
@@ -408,10 +406,10 @@ public class MlRotation
 	{
 	    float dist = 1 / (float)Math.sqrt(norm());
 
-	    m_quat[0] = m_quat[0] * dist;
-	    m_quat[1] = m_quat[1] * dist;
-	    m_quat[2] = m_quat[2] * dist;
-	    m_quat[3] = m_quat[3] * dist;
+	    mQuat[0] = mQuat[0] * dist;
+	    mQuat[1] = mQuat[1] * dist;
+	    mQuat[2] = mQuat[2] * dist;
+	    mQuat[3] = mQuat[3] * dist;
 	}
 	
     /**
@@ -423,10 +421,10 @@ public class MlRotation
     {
         float invNorm = (1 / norm());
 
-        m_quat[0] = -(m_quat[0] * invNorm);
-        m_quat[1] = -(m_quat[1] * invNorm);
-        m_quat[2] = -(m_quat[2] * invNorm);
-        m_quat[3] =  (m_quat[3] * invNorm);
+        mQuat[0] = -(mQuat[0] * invNorm);
+        mQuat[1] = -(mQuat[1] * invNorm);
+        mQuat[2] = -(mQuat[2] * invNorm);
+        mQuat[3] =  (mQuat[3] * invNorm);
 
         return this;
     }
@@ -454,18 +452,18 @@ public class MlRotation
     {
         float p0, p1, p2, p3;
 
-        p0 = ((q.m_quat[3] * m_quat[0]) + (q.m_quat[0] * m_quat[3]) +
-              (q.m_quat[1] * m_quat[2]) - (q.m_quat[2] * m_quat[1]));
-        p1 = ((q.m_quat[3] * m_quat[1]) + (q.m_quat[1] * m_quat[3]) +
-              (q.m_quat[2] * m_quat[0]) - (q.m_quat[0] * m_quat[2]));
-        p2 = ((q.m_quat[3] * m_quat[2]) + (q.m_quat[2] * m_quat[3]) +
-              (q.m_quat[0] * m_quat[1]) - (q.m_quat[1] * m_quat[0]));
-        p3 = ((q.m_quat[3] * m_quat[3]) - (q.m_quat[0] * m_quat[0]) -
-              (q.m_quat[1] * m_quat[1]) - (q.m_quat[2] * m_quat[2]));
-        m_quat[0] = p0;
-        m_quat[1] = p1;
-        m_quat[2] = p2;
-        m_quat[3] = p3;
+        p0 = ((q.mQuat[3] * mQuat[0]) + (q.mQuat[0] * mQuat[3]) +
+              (q.mQuat[1] * mQuat[2]) - (q.mQuat[2] * mQuat[1]));
+        p1 = ((q.mQuat[3] * mQuat[1]) + (q.mQuat[1] * mQuat[3]) +
+              (q.mQuat[2] * mQuat[0]) - (q.mQuat[0] * mQuat[2]));
+        p2 = ((q.mQuat[3] * mQuat[2]) + (q.mQuat[2] * mQuat[3]) +
+              (q.mQuat[0] * mQuat[1]) - (q.mQuat[1] * mQuat[0]));
+        p3 = ((q.mQuat[3] * mQuat[3]) - (q.mQuat[0] * mQuat[0]) -
+              (q.mQuat[1] * mQuat[1]) - (q.mQuat[2] * mQuat[2]));
+        mQuat[0] = p0;
+        mQuat[1] = p1;
+        mQuat[2] = p2;
+        mQuat[3] = p3;
 
         normalize();
 
@@ -483,17 +481,17 @@ public class MlRotation
     public final MlRotation mul(MlRotation q1, MlRotation q2)
     {
         MlRotation q = new MlRotation
-        	((q2.m_quat[3] * q1.m_quat[0]) + (q2.m_quat[0] * q1.m_quat[3]) +
-             (q2.m_quat[1] * q1.m_quat[2]) - (q2.m_quat[2] * q1.m_quat[1]),
+        	((q2.mQuat[3] * q1.mQuat[0]) + (q2.mQuat[0] * q1.mQuat[3]) +
+             (q2.mQuat[1] * q1.mQuat[2]) - (q2.mQuat[2] * q1.mQuat[1]),
 
-             (q2.m_quat[3] * q1.m_quat[1]) + (q2.m_quat[1] * q1.m_quat[3]) +
-             (q2.m_quat[2] * q1.m_quat[0]) - (q2.m_quat[0] * q1.m_quat[2]),
+             (q2.mQuat[3] * q1.mQuat[1]) + (q2.mQuat[1] * q1.mQuat[3]) +
+             (q2.mQuat[2] * q1.mQuat[0]) - (q2.mQuat[0] * q1.mQuat[2]),
 
-             (q2.m_quat[3] * q1.m_quat[2]) + (q2.m_quat[2] * q1.m_quat[3]) +
-             (q2.m_quat[0] * q1.m_quat[1]) - (q2.m_quat[1] * q1.m_quat[0]),
+             (q2.mQuat[3] * q1.mQuat[2]) + (q2.mQuat[2] * q1.mQuat[3]) +
+             (q2.mQuat[0] * q1.mQuat[1]) - (q2.mQuat[1] * q1.mQuat[0]),
 
-             (q2.m_quat[3] * q1.m_quat[3]) - (q2.m_quat[0] * q1.m_quat[0]) -
-             (q2.m_quat[1] * q1.m_quat[1]) - (q2.m_quat[2] * q1.m_quat[2]));
+             (q2.mQuat[3] * q1.mQuat[3]) - (q2.mQuat[0] * q1.mQuat[0]) -
+             (q2.mQuat[1] * q1.mQuat[1]) - (q2.mQuat[2] * q1.mQuat[2]));
 
         q.normalize();
 
@@ -557,8 +555,8 @@ public class MlRotation
         int i;
 
         // Calculate the cosine.
-        cosom = (rot0.m_quat[0] * rot1.m_quat[0]) + (rot0.m_quat[1] * rot1.m_quat[1])
-                + (rot0.m_quat[2] * rot1.m_quat[2]) + (rot0.m_quat[3] * rot1.m_quat[3]);
+        cosom = (rot0.mQuat[0] * rot1.mQuat[0]) + (rot0.mQuat[1] * rot1.mQuat[1])
+                + (rot0.mQuat[2] * rot1.mQuat[2]) + (rot0.mQuat[3] * rot1.mQuat[3]);
 
         // Adjust signs if necessary.
         if ( cosom < MlScalar.ML_SCALAR_ZERO )
@@ -589,7 +587,7 @@ public class MlRotation
 
         // Build the new quarternion.
         for (i = 0; i < 4; i++)
-            rot.m_quat[i] = (scalerot0 * rot0.m_quat[i]) + (scalerot1 * rot1q[i]);
+            rot.mQuat[i] = (scalerot0 * rot0.mQuat[i]) + (scalerot1 * rot1q[i]);
 
         return rot;
     }
@@ -604,10 +602,10 @@ public class MlRotation
      */
     public final boolean equals(MlRotation q)
     {
-	    return (m_quat[0] == q.m_quat[0] &&
-	            m_quat[1] == q.m_quat[1] &&
-	            m_quat[2] == q.m_quat[2] &&
-	            m_quat[3] == q.m_quat[3]);
+	    return (mQuat[0] == q.mQuat[0] &&
+	            mQuat[1] == q.mQuat[1] &&
+	            mQuat[2] == q.mQuat[2] &&
+	            mQuat[3] == q.mQuat[3]);
     }
     
 	/**
@@ -622,7 +620,7 @@ public class MlRotation
 	 */
 	public final boolean equals(MlRotation q, float tolerance)
     {
-	    return new MlVector4(m_quat).equals(new MlVector4(q.m_quat), tolerance);
+	    return new MlVector4(mQuat).equals(new MlVector4(q.mQuat), tolerance);
     }
 
 }

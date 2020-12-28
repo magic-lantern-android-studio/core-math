@@ -7,7 +7,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2019 Wizzer Works
+// Copyright (c) 2019-2021 Wizzer Works
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -41,8 +41,6 @@ package com.wizzer.mle.math;
 
 /**
  * This class is a convenience class for specifying scalar values.
- * 
- * @author Mark S. Millard
  */
 public class MlScalar
 {
@@ -69,5 +67,4 @@ public class MlScalar
 
     // Hide default constructor.
     private MlScalar() {}
-
 }

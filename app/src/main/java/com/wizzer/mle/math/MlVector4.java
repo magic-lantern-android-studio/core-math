@@ -48,7 +48,7 @@ package com.wizzer.mle.math;
 public class MlVector4
 {
     // The internal vector representation.
-    public float[] m_vector = new float[4];
+    public float[] mVector = new float[4];
     
     /**
      * The default constructor. All elements in the vector are
@@ -57,10 +57,10 @@ public class MlVector4
     public MlVector4()
     {
         super();
-        m_vector[0] = 0;
-        m_vector[1] = 0;
-        m_vector[2] = 0;
-        m_vector[3] = 0;
+        mVector[0] = 0;
+        mVector[1] = 0;
+        mVector[2] = 0;
+        mVector[3] = 0;
     }
     
     /**
@@ -71,10 +71,10 @@ public class MlVector4
      */
     public MlVector4(float[] v)
     {
-        m_vector[0] = v[0];
-        m_vector[1] = v[1];
-        m_vector[2] = v[2];
-        m_vector[3] = v[3];
+        mVector[0] = v[0];
+        mVector[1] = v[1];
+        mVector[2] = v[2];
+        mVector[3] = v[3];
     }
     
     /**
@@ -88,10 +88,10 @@ public class MlVector4
      */
     public MlVector4(float x, float y, float z, float w)
     {
-        m_vector[0] = x;
-        m_vector[1] = y;
-        m_vector[2] = z;
-        m_vector[3] = w;
+        mVector[0] = x;
+        mVector[1] = y;
+        mVector[2] = z;
+        mVector[3] = w;
     }
     
     /**
@@ -102,10 +102,10 @@ public class MlVector4
      */
     public MlVector4(MlVector4 v)
     {
-        m_vector[0] = v.m_vector[0];
-        m_vector[1] = v.m_vector[1];
-        m_vector[2] = v.m_vector[2];
-        m_vector[3] = v.m_vector[3];
+        mVector[0] = v.mVector[0];
+        mVector[1] = v.mVector[1];
+        mVector[2] = v.mVector[2];
+        mVector[3] = v.mVector[3];
     }
     
     /**
@@ -116,10 +116,10 @@ public class MlVector4
      */
     public final boolean isZero()
     {
-        return ((m_vector[0] == 0) &&
-                (m_vector[1] == 0) &&
-                (m_vector[2] == 0) &&
-                (m_vector[3] == 0));
+        return ((mVector[0] == 0) &&
+                (mVector[1] == 0) &&
+                (mVector[2] == 0) &&
+                (mVector[3] == 0));
     }
     
     /**
@@ -133,10 +133,10 @@ public class MlVector4
      */
     public final float dot(MlVector4 v)
     {
-        return ((m_vector[0] * v.m_vector[0]) +
-                (m_vector[1] * v.m_vector[1]) +
-                (m_vector[2] * v.m_vector[2]) +
-                (m_vector[3] * v.m_vector[3]));
+        return ((mVector[0] * v.mVector[0]) +
+                (mVector[1] * v.mVector[1]) +
+                (mVector[2] * v.mVector[2]) +
+                (mVector[3] * v.mVector[3]));
     }
 
     /**
@@ -146,10 +146,10 @@ public class MlVector4
      */
     public final void getValue(float[] v)
     {
-        v[0] = m_vector[0];
-        v[1] = m_vector[1];
-        v[2] = m_vector[2];
-        v[3] = m_vector[3];
+        v[0] = mVector[0];
+        v[1] = mVector[1];
+        v[2] = mVector[2];
+        v[3] = mVector[3];
     }
 
     /**
@@ -161,10 +161,10 @@ public class MlVector4
      */
     public final MlVector4 setValue(float v[])
     {
-        m_vector[0] = v[0];
-        m_vector[1] = v[1];
-        m_vector[2] = v[2];
-        m_vector[3] = v[3];
+        mVector[0] = v[0];
+        mVector[1] = v[1];
+        mVector[2] = v[2];
+        mVector[3] = v[3];
         
         return this;
     }
@@ -178,10 +178,10 @@ public class MlVector4
      */
     public final MlVector4 setValue(MlVector4 v)
     {
-        m_vector[0] = v.m_vector[0];
-        m_vector[1] = v.m_vector[1];
-        m_vector[2] = v.m_vector[2];
-        m_vector[3] = v.m_vector[3];
+        mVector[0] = v.mVector[0];
+        mVector[1] = v.mVector[1];
+        mVector[2] = v.mVector[2];
+        mVector[3] = v.mVector[3];
         
         return this;
     }
@@ -198,10 +198,10 @@ public class MlVector4
      */
     public final MlVector4 setValue (float x, float y, float z, float w)
     {
-        m_vector[0] = x;
-        m_vector[1] = y;
-        m_vector[2] = z;
-        m_vector[2] = w;
+        mVector[0] = x;
+        mVector[1] = y;
+        mVector[2] = z;
+        mVector[2] = w;
         
         return this;
     }
@@ -214,10 +214,10 @@ public class MlVector4
     public final float length()
     {
         return (float)Math.sqrt(
-            (m_vector[0] * m_vector[0]) +
-            (m_vector[1] * m_vector[1]) +
-            (m_vector[2] * m_vector[2]) +
-            (m_vector[3] * m_vector[3]));
+            (mVector[0] * mVector[0]) +
+            (mVector[1] * mVector[1]) +
+            (mVector[2] * mVector[2]) +
+            (mVector[3] * mVector[3]));
     }
         
     /**
@@ -239,10 +239,10 @@ public class MlVector4
 
         if (len != MlScalar.ML_SCALAR_ZERO)
         {
-            m_vector[0] = m_vector[0] * (1/ len);
-            m_vector[1] = m_vector[1] * (1/ len);
-            m_vector[2] = m_vector[2] * (1/ len);
-            m_vector[3] = m_vector[3] * (1/ len);
+            mVector[0] = mVector[0] * (1/ len);
+            mVector[1] = mVector[1] * (1/ len);
+            mVector[2] = mVector[2] * (1/ len);
+            mVector[3] = mVector[3] * (1/ len);
         } else 
             setValue(MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO, MlScalar.ML_SCALAR_ZERO,
                      MlScalar.ML_SCALAR_ZERO);
@@ -258,9 +258,9 @@ public class MlVector4
 	 */
     public final void getReal(MlVector3 v)
     {
-        v.m_vector[0] = (m_vector[0] / m_vector[3]);
-        v.m_vector[1] = (m_vector[1] / m_vector[3]);
-        v.m_vector[2] = (m_vector[2] / m_vector[3]);
+        v.mVector[0] = (mVector[0] / mVector[3]);
+        v.mVector[1] = (mVector[1] / mVector[3]);
+        v.mVector[2] = (mVector[2] / mVector[3]);
     }
     
     /**
@@ -268,10 +268,10 @@ public class MlVector4
      */ 
     public final void negate()
     {
-        m_vector[0] = -m_vector[0];
-        m_vector[1] = -m_vector[1];
-        m_vector[2] = -m_vector[2];
-        m_vector[3] = -m_vector[3];
+        mVector[0] = -mVector[0];
+        mVector[1] = -mVector[1];
+        mVector[2] = -mVector[2];
+        mVector[3] = -mVector[3];
     }
     
     /**
@@ -281,7 +281,7 @@ public class MlVector4
      */
     public final MlVector4 unaryNegate()
     {
-        return new MlVector4(-m_vector[0], -m_vector[1], -m_vector[2], -m_vector[3]);
+        return new MlVector4(-mVector[0], -mVector[1], -mVector[2], -mVector[3]);
     }
     
     // Calculate the scale.
@@ -305,7 +305,7 @@ public class MlVector4
      */
     public final void getScale(float[] scale, float[] recipScale)
     {
-        calcScale(m_vector, 4, scale, recipScale);
+        calcScale(mVector, 4, scale, recipScale);
     }
 
     /**
@@ -318,10 +318,10 @@ public class MlVector4
      */
     public final boolean equals(MlVector4 v)
     {
-        return ((m_vector[0] == v.m_vector[0]) &&
-                (m_vector[1] == v.m_vector[1]) &&
-                (m_vector[2] == v.m_vector[2]) &&
-                (m_vector[3] == v.m_vector[3]));
+        return ((mVector[0] == v.mVector[0]) &&
+                (mVector[1] == v.mVector[1]) &&
+                (mVector[2] == v.mVector[2]) &&
+                (mVector[3] == v.mVector[3]));
     }
     
     /**
@@ -336,9 +336,9 @@ public class MlVector4
      */
     public final boolean equals(MlVector4 v, float tolerance)
     {
-        MlVector4 diff =  new MlVector4(m_vector[0] - v.m_vector[0],
-                m_vector[1] - v.m_vector[1], m_vector[2] - v.m_vector[2],
-                m_vector[3] - v.m_vector[3]);
+        MlVector4 diff =  new MlVector4(mVector[0] - v.mVector[0],
+                mVector[1] - v.mVector[1], mVector[2] - v.mVector[2],
+                mVector[3] - v.mVector[3]);
 
         return diff.dot(diff) <= tolerance;
     }
@@ -352,10 +352,10 @@ public class MlVector4
      */
     public final MlVector4 mul(float d)
     {
-        m_vector[0] = m_vector[0] * d;
-        m_vector[1] = m_vector[1] * d;
-        m_vector[2] = m_vector[2] * d;
-        m_vector[3] = m_vector[3] * d;
+        mVector[0] = mVector[0] * d;
+        mVector[1] = mVector[1] * d;
+        mVector[2] = mVector[2] * d;
+        mVector[3] = mVector[3] * d;
 
         return this;
     }
@@ -370,9 +370,9 @@ public class MlVector4
      */
     public final MlVector4 mul(MlVector4 v, float d)
     {
-        return new MlVector4((v.m_vector[0] * d),
-        	(v.m_vector[1] * d), (v.m_vector[2] * d),
-        	(v.m_vector[3] * d));
+        return new MlVector4((v.mVector[0] * d),
+        	(v.mVector[1] * d), (v.mVector[2] * d),
+        	(v.mVector[3] * d));
     }
     
     /**
@@ -398,10 +398,10 @@ public class MlVector4
      */
     public final MlVector4 add(MlVector4 v)
     {
-        m_vector[0] += v.m_vector[0];
-        m_vector[1] += v.m_vector[1];
-        m_vector[2] += v.m_vector[2];
-        m_vector[3] += v.m_vector[3];
+        mVector[0] += v.mVector[0];
+        mVector[1] += v.mVector[1];
+        mVector[2] += v.mVector[2];
+        mVector[3] += v.mVector[3];
 
         return this;
     }
@@ -416,10 +416,10 @@ public class MlVector4
      */
     public final MlVector4 add(MlVector4 v1, MlVector4 v2)
     {
-        return new MlVector4(v1.m_vector[0] + v2.m_vector[0],
-        	v1.m_vector[1] + v2.m_vector[1],
-        	v1.m_vector[2] + v2.m_vector[2],
-        	v1.m_vector[3] + v2.m_vector[3]);
+        return new MlVector4(v1.mVector[0] + v2.mVector[0],
+        	v1.mVector[1] + v2.mVector[1],
+        	v1.mVector[2] + v2.mVector[2],
+        	v1.mVector[3] + v2.mVector[3]);
     }
     
     /**
@@ -431,10 +431,10 @@ public class MlVector4
      */
     public final MlVector4 sub(MlVector4 v)
     {
-        m_vector[0] -= v.m_vector[0];
-        m_vector[1] -= v.m_vector[1];
-        m_vector[2] -= v.m_vector[2];
-        m_vector[3] -= v.m_vector[3];
+        mVector[0] -= v.mVector[0];
+        mVector[1] -= v.mVector[1];
+        mVector[2] -= v.mVector[2];
+        mVector[3] -= v.mVector[3];
 
         return this;
     }
@@ -449,10 +449,10 @@ public class MlVector4
      */
     public final MlVector4 sub(MlVector4 v1, MlVector4 v2)
     {
-        return new MlVector4(v1.m_vector[0] - v2.m_vector[0],
-            v1.m_vector[1] - v2.m_vector[1],
-            v1.m_vector[2] - v2.m_vector[2],
-            v1.m_vector[3] - v2.m_vector[3]);
+        return new MlVector4(v1.mVector[0] - v2.mVector[0],
+            v1.mVector[1] - v2.mVector[1],
+            v1.mVector[2] - v2.mVector[2],
+            v1.mVector[3] - v2.mVector[3]);
     }
 
 }
